@@ -1,0 +1,29 @@
+Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "grey"
+	   -- 1600 - 150 = 1450
+	   -- 1366 - 150 = 1216
+	   -- 1920 - 150 = 1770
+	   -- 1280 - 140 = 1140
+       , position = Static { xpos = 0, ypos = 0, width = 1460, height = 20 }
+       , lowerOnStart = True
+-- ESSL Linkoping
+-- ESSP Norrkoping
+-- ESOW Vasteras
+       , commands = [ Run Weather "ESOW" ["-t","<tempC>","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                    , Run Network "eth0" ["-L","0","-H","2000","--normal","green","--high","red"] 10
+					, Run Network "wlan0" ["-t","<dev>: <rx> / <tx>","-S","True","-L","1","-H","2000","--normal","green","--high","red"] 10
+					, Run Wireless "wlan0" ["-t","<quality>%"] 10
+                    , Run MultiCpu ["-t","CPU:<total0><total1><total2><total3>","-L","2","-H","50","--normal","#CEFFAC","--high","#FFB6B0","-w","5"] 10                      
+--                    , Run CpuFreq ["-t", "<cpu0>", "-L", "0", "-H", "2", "-l", "lightblue", "-n","white", "-h", "red"] 50
+		    , Run Com "/home/chrols/src/scripts/cputemp" [] "cputemp" 50
+		    , Run Com "/home/chrols/src/scripts/gputemp" [] "gputemp" 50
+		    , Run Com "/home/chrols/src/scripts/xmobar-volume" [] "volume" 50			
+                    , Run TopProc [] 10
+		    , Run StdinReader
+                    , Run Date "%a %b %d - %H:%M" "date" 600		    
+                    ]
+       , sepChar = "%" 
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %top% %multicpu% Vol: %volume% %wlan0% / %wlan0wi% %eth0% CPU: %cputemp% GPU:%gputemp% Ute: %ESOW% | <fc=#ee9a00>%date%</fc>"
+       }
