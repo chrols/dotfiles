@@ -3,8 +3,8 @@ BIN=/home/chrols/src/scripts
 
 pulseaudio --start
 setxkbmap -option terminate:ctrl_alt_bksp
-#setxkbmap se -variant dvorak
-setxkbmap se
+setxkbmap se -variant dvorak
+#setxkbmap se
 
 #export GTK_IM_MODULE='uim'
 #export QT_IM_MODULE='uim'
