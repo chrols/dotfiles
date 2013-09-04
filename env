@@ -1,0 +1,20 @@
+#!/bin/bash
+# --------------------------------------------------------------------
+# environment
+# --------------------------------------------------------------------
+
+export EDITOR=emacs
+
+export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"
+
+export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:$HOME/bin:$HOME/src/scripts
+
+export PYTHONPATH=$HOME/.python/python2.7/site-packages
+
+export LD_LIBRARY_PATH=$HOME/CS/KDSoap/lib:$LD_LIBRARY_PATH
+
+export SOAPUI_HOME=$HOME/.soapui
+
+if [ `hostname` = "ares" ]; then
+   export JRE_HOME=/opt/java6/jre
+fi
