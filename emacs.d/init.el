@@ -56,3 +56,5 @@
 
 (global-linum-mode 1)
 ;(ispell-change-dictionary "en_US")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
