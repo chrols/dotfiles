@@ -48,10 +48,7 @@ case $1 in
 	xfce)
 		exec startxfce4
 		;;
-	kde)
-		exec startkde
-		;;
-	xmonad|*)
+	xmonad)
 		$BIN/start_xfsettingsd.sh &
 #		$BIN/fix_screen
 		$BIN/tray &
@@ -60,6 +57,9 @@ case $1 in
 		xsetroot -cursor_name left_ptr &
 		nm-applet&
 		exec xmonad
+		;;
+	kde|*)
+		exec startkde
 		;;
 esac
 
