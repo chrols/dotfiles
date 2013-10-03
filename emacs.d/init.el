@@ -51,3 +51,8 @@
 (setq load-path (cons "~/.emacs.d/git/powerline" load-path))
 (require 'powerline)
 (powerline-default-theme)
+
+(setq initial-scratch-message nil)
+
+(global-linum-mode 1)
+;(ispell-change-dictionary "en_US")
