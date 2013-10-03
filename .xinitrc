@@ -3,8 +3,10 @@ BIN=/home/chrols/src/scripts
 
 pulseaudio --start
 setxkbmap -option terminate:ctrl_alt_bksp
-setxkbmap se -variant dvorak
-#setxkbmap se
+#setxkbmap se -variant dvorak
+setxkbmap se
+
+export PATH=$PATH:/home/chrols/bin
 
 #export GTK_IM_MODULE='uim'
 #export QT_IM_MODULE='uim'
@@ -48,7 +50,10 @@ case $1 in
 	xfce)
 		exec startxfce4
 		;;
-	xmonad)
+	kde)
+		exec startkde
+		;;
+	xmonad|*)
 		$BIN/start_xfsettingsd.sh &
 #		$BIN/fix_screen
 		$BIN/tray &
@@ -57,9 +62,6 @@ case $1 in
 		xsetroot -cursor_name left_ptr &
 		nm-applet&
 		exec xmonad
-		;;
-	kde|*)
-		exec startkde
 		;;
 esac
 
