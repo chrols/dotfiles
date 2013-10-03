@@ -202,12 +202,12 @@ viewWeb = windows (W.greedyView "1")                           -- (0,0a)
 main = do
   xmproc <- spawnPipe "xmobar"  -- start xmobar  
   spawn "pkill -f trayer"
-  spawn "/home/chrols/src/scripts/tray"
+  spawn "tray"
   xmonad $ defaultConfig 
         { modMask = mod4Mask        
 --        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
         , layoutHook = myLayoutHook
-        , terminal = "exo-open --launch TerminalEmulator"
+        , terminal = "xterm"
         , manageHook = myManageHook
         , borderWidth = 1
         , normalBorderColor = "#60A1AD"
