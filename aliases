@@ -86,3 +86,5 @@ alias less="less -R"
 alias svndiff="svn diff --diff-cmd=colordiff|less"
 alias diff="colordiff -u"
 alias vecka="python -c 'import datetime; print(datetime.date.today().isocalendar()[1])'"
+
+alias vpn-cs-connect="sudo vpnc /etc/vpnc/cs.conf"
