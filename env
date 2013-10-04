@@ -15,6 +15,14 @@ export LD_LIBRARY_PATH=$HOME/CS/KDSoap/lib:$LD_LIBRARY_PATH
 
 export SOAPUI_HOME=$HOME/.soapui
 
+export _JAVA_OPTIONS="
+-Dawt.useSystemAAFontSettings=on
+-Dswing.aatext=true
+-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel
+-Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel
+"
+
 if [ `hostname` = "ares" ]; then
    export JRE_HOME=/opt/java6/jre
+   export JDK_HOME=/opt/java6/
 fi
