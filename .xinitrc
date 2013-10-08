@@ -5,6 +5,7 @@ pulseaudio --start
 setxkbmap -option terminate:ctrl_alt_bksp
 #setxkbmap se -variant dvorak
 setxkbmap se
+xset -b
 
 export PATH=$PATH:/home/chrols/bin
 
