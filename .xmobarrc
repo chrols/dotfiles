@@ -23,8 +23,15 @@ Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
                     , Run TopProc [] 10
 		    , Run StdinReader
                     , Run Date "%a %b %d - %H:%M" "date" 600
+                    , Run BatteryP ["BAT0"]
+              ["-t", "<acstatus><watts> (<left>%)",
+               "-L", "10", "-H", "80", "-p", "3",
+               "--", "-O", "<fc=green>On</fc> - ", "-i", "",
+               "-L", "-15", "-H", "-5",
+               "-l", "red", "-m", "blue", "-h", "green"]
+              600
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ %top% %multicpu% Vol: %volume% %wlan0% / %wlan0wi% %eth0% CPU: %cputemp% GPU:%gputemp% Ute: %ESSP% | <fc=#ee9a00>%date%</fc>"
+       , template = " %StdinReader% }{ %top% %multicpu% Vol: %volume% %wlan0% / %wlan0wi% %eth0% CPU: %cputemp% GPU:%gputemp% Ute: %ESSP% | %battery%| <fc=#ee9a00>%date%</fc>"
        }
