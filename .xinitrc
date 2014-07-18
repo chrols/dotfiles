@@ -56,10 +56,10 @@ case $1 in
 		;;
 	xmonad|*)
 		$BIN/start_xfsettingsd.sh &
-#		$BIN/fix_screen
-		$BIN/tray &
+#		#$BIN/fix_screen
+		#$BIN/tray &
 		xsetroot -solid black
-		feh --bg-fill $HOME/.bg.jpg &
+		#feh --bg-fill $HOME/.bg.jpg &
 		xsetroot -cursor_name left_ptr &
 		nm-applet&
 		exec xmonad
