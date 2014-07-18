@@ -9,14 +9,13 @@ import XMonad.Hooks.SetWMName
 
 -- Import stuff
 import XMonad
-import qualified XMonad.StackSet as W 
+import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import XMonad.Util.EZConfig(additionalKeys)
 import System.Exit
 import Graphics.X11.Xlib
 import System.IO
- 
- 
+
 -- actions
 import XMonad.Actions.CycleWS
 import XMonad.Actions.WindowGo
@@ -24,14 +23,13 @@ import qualified XMonad.Actions.Search as S
 import XMonad.Actions.Search
 import qualified XMonad.Actions.Submap as SM
 import XMonad.Actions.GridSelect
- 
+
 -- utils
 import XMonad.Util.Scratchpad (scratchpadSpawnAction, scratchpadManageHook, scratchpadFilterOutWorkspace)
 import XMonad.Util.Run(spawnPipe)
 import qualified XMonad.Prompt 		as P
 import XMonad.Prompt.Shell
 import XMonad.Prompt
- 
  
 -- hooks
 import XMonad.Hooks.DynamicLog
@@ -207,7 +205,7 @@ main = do
         { modMask = mod4Mask        
 --        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
         , layoutHook = myLayoutHook
-        , terminal = "xterm"
+        , terminal = "urxvt"
         , manageHook = myManageHook
         , borderWidth = 1
         , normalBorderColor = "#60A1AD"
@@ -216,55 +214,51 @@ main = do
         , workspaces = myWorkspaces
         , focusFollowsMouse = True
         } `additionalKeys`
-        [ ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c") 
+        [ ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c")
         , ((mod4Mask .|. shiftMask, xK_t), spawn "dolphin")
-        , ((mod4Mask .|. shiftMask, xK_f), spawn "firefox")        
+        , ((mod4Mask .|. shiftMask, xK_f), spawn "firefox")
         , ((mod4Mask .|. shiftMask, xK_d), spawn "deluge")
-        , ((mod4Mask .|. shiftMask, xK_m), spawn "clementine")        
-        , ((mod4Mask .|. shiftMask, xK_l), spawn "xlock -mode blank")                           
+        , ((mod4Mask .|. shiftMask, xK_m), spawn "clementine")
+        , ((mod4Mask .|. shiftMask, xK_l), spawn "xlock -mode blank")
         --, ((modMask .|. shiftMask, xK_h ), sendMessage MirrorShrink)
         --, ((modMask .|. shiftMask, xK_l ), sendMessage MirrorExpand)
-        
-          
+
         , ((0, xK_section), spawn "exo-open --launch TerminalEmulator")
 
-        , ((mod4Mask, xK_b), sendMessage ToggleStruts)           
+        , ((mod4Mask, xK_b), sendMessage ToggleStruts)
         , ((mod4Mask, xK_p), spawn "exe=`dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb black -sf grey` && eval \"exec $exe\"")
-           
+
         , ((mod4Mask, xK_F3), spawn "/usr/bin/dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb 'black' -sf 'grey'")
-          
         , ((mod4Mask .|. shiftMask, xK_F1), spawn "setxkbmap se")
         , ((mod4Mask .|. shiftMask, xK_F2), spawn "setxkbmap se -variant dvorak")
 
-        , ((mod4Mask .|. shiftMask, xK_F10), spawn "systemctl poweroff")                    
-        , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")                    
-        , ((mod4Mask .|. shiftMask, xK_F12), spawn "systemctl suspend")          
-          
+        , ((mod4Mask .|. shiftMask, xK_F10), spawn "systemctl poweroff")
+        , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")
+        , ((mod4Mask .|. shiftMask, xK_F12), spawn "systemctl suspend")
 
-          
         , ((0 , 0x1008ff18), spawn "/usr/bin/firefox http://www.reddit.com") -- 0x1008ff18, XF86HomePage
         , ((0 , 0x1008ff19), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff19, XF86Mail
         , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff1b, XF86Search 
 
           -- 0x1008ff45, XF86Launch5
-        , ((0 , 0x1008ff45), spawn "/usr/local/eclipse/eclipse")                              
-        , ((0 , 0x1008ff46), spawn "VirtualBox")           
-        , ((0 , 0x1008ff47), spawn "xfsettingsd --replace --sync")           
+        , ((0 , 0x1008ff45), spawn "/usr/local/eclipse/eclipse")
+        , ((0 , 0x1008ff46), spawn "VirtualBox")
+        , ((0 , 0x1008ff47), spawn "xfsettingsd --replace --sync")
         , ((0 , 0x1008ff48), spawn "/usr/local/bin/fix_screen")
-        , ((0 , 0x1008ff49), spawn "/usr/bin/firefox http://www.gmail.com")                              
-          
+        , ((0 , 0x1008ff49), spawn "/usr/bin/firefox http://www.gmail.com")
+
         , ((0 , 0x1008ff30), spawn "/usr/bin/firefox http://www.gmail.com")     -- 0x1008ff30, XF86Favorites
         , ((0 , 0x1008ff1d), spawn "exo-open --launch TerminalEmulator python") -- 0x1008ff1d, XF86Calculator
-          
+
         , ((0 , 0x1008ff12), spawn "amixer -q set Master toggle")     -- XF86AudioMute
-          
+
 
 --        , ((0 , 0x1008ff11), spawn "pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo -- -5%") -- XF86AudioLowerVolume
   --      , ((0 , 0x1008ff13), spawn "pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo -- +5%") -- XF86AudioRaiseVolume
-          
+
          , ((0 , 0x1008ff11), spawn "amixer -q set Master  1- unmute") -- XF86AudioLowerVolume
          , ((0 , 0x1008ff13), spawn "amixer -q set Master 1+ unmute")  -- XF86AudioRaiseVolume
-          
+
         , ((mod4Mask, xK_Print), spawn "sleep 2; export DISPLAY=:0.0 ; /usr/local/bin/scrot_now")
         , ((0, xK_Print), spawn "export DISPLAY=:0.0 ; /usr/local/bin/scrot_now")
         ]
