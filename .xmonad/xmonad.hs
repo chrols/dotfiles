@@ -203,7 +203,7 @@ main = do
   spawn "tray"
   xmonad $ defaultConfig 
         { modMask = mod4Mask        
---        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
+        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
         , layoutHook = myLayoutHook
         , terminal = "urxvt"
         , manageHook = myManageHook
@@ -259,8 +259,8 @@ main = do
          , ((0 , 0x1008ff11), spawn "amixer -q set Master  1- unmute") -- XF86AudioLowerVolume
          , ((0 , 0x1008ff13), spawn "amixer -q set Master 1+ unmute")  -- XF86AudioRaiseVolume
 
-        , ((mod4Mask, xK_Print), spawn "sleep 2; export DISPLAY=:0.0 ; /usr/local/bin/scrot_now")
-        , ((0, xK_Print), spawn "export DISPLAY=:0.0 ; /usr/local/bin/scrot_now")
+        , ((mod4Mask, xK_Print), spawn "sleep 2; export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
+        , ((0, xK_Print), spawn "export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
         ]
 
 
