@@ -126,3 +126,6 @@ compctl -K _cdb cdb
 
 unsetopt correct_all
 unsetopt correct
+
+# OPAM configuration
+. /home/chrols/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
