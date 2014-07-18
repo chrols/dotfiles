@@ -4,12 +4,12 @@ Eclipse*fontList:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
 *inputMethod: kinput2
 emacs.FontBackend: xft
 !Emacs.font: Monospace-8
-!emacs*font:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
+emacs*font:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
 !emacs.font:consolas-10
 !emacs.font:dina-10
 !emacs.font:Terminal-10
 !emacs.font:DejaVu Sans Mono-11
-emacs.font: Inconsolata-12
+!emacs.font: Inconsolata-12
 
 xterm*faceName: DejaVu Sans Mono
 xterm*faceSize: 10
@@ -162,3 +162,11 @@ urxvt*font: xft:DejaVu Sans Mono-10
  urxvt*color14:               #93a1a1
  urxvt*color15:               #fdf6e3
 
+! -> To enable extensions place the following in ~/.Xresources
+!    (change to whatever suits your needs)
+!  URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+!  URxvt.url-select.launcher:  chromium
+!  URxvt.url-select.underline: true
+!  URxvt.keysym.M-u:           perl:url-select:select_next
+!  URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+!  URxvt.keysym.M-s:           perl:keyboard-select:search
