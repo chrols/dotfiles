@@ -18,3 +18,10 @@
 	rebase = true
 [branch]
 	autosetuprebase = always
+
+[merge]
+        tool = ediff
+
+[mergetool "ediff"]
+           cmd = /home/chrols/bin/ediff.sh $LOCAL $REMOTE $MERGED $BASE
+           trustExitCode = true
