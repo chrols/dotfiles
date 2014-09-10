@@ -20,6 +20,7 @@ Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
 		    , Run Com "cputemp" [] "cputemp" 50
 		    , Run Com "gputemp" [] "gputemp" 50
 		    , Run Com "xmobar-volume" [] "volume" 50
+                    , Run Com "/usr/bin/perl" ["/home/chrols/bin/xmobar-stocks", "^OMXS30%", "^GSPC%", "^N225%"] "stocks" 600
                     , Run TopProc [] 10
 		    , Run StdinReader
                     , Run Date "%a %b %d - %H:%M" "date" 600
@@ -33,5 +34,5 @@ Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ %top% %multicpu% Vol: %volume% %wlan0% / %wlan0wi% %eth0% CPU: %cputemp% GPU:%gputemp% Ute: %ESSP% | %battery%| <fc=#ee9a00>%date%</fc>"
+       , template = " %StdinReader% }{ %top% %multicpu% Vol: %volume% %wlan0% / %wlan0wi% %eth0% CPU: %cputemp% GPU:%gputemp% Ute: %ESSP% | %battery% | %stocks% <fc=#ee9a00>%date%</fc>"
        }
