@@ -15,7 +15,9 @@
                       clojure-test-mode
                       nrepl
                       jedi
-                      color-theme color-theme-monokai)
+                      color-theme
+                      color-theme-monokai
+                      color-theme-molokai)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -27,7 +29,8 @@
 (load "~/.emacs.d/utility.el")
 
 (require 'color-theme)
-(color-theme-monokai)
+(color-theme-molokai)
+; (color-theme-monokai)
 
 (global-set-key [f2] 'visit-ansi-term)
 (global-set-key [f11] 'fullscreen)
@@ -58,3 +61,8 @@
 ;(ispell-change-dictionary "en_US")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
+(add-hook 'nxml-mode-hook
+          (lambda ()
+            (setq sgml-basic-offset 4)
+            (setq indent-tabs-mode t)
+            (setq tab-width 4)))
