@@ -1,6 +1,8 @@
 # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
+skip_global_compinit=1
+
 eval `dircolors -b`
 
 ## oh-my-zsh config
