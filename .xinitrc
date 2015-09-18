@@ -7,40 +7,16 @@ setxkbmap -option terminate:ctrl_alt_bksp
 setxkbmap se
 xset -b
 
-export PATH=$PATH:/home/chrols/bin
-
-#export GTK_IM_MODULE='uim'
-#export QT_IM_MODULE='uim'
-#export XMODIFIERS=@im='uim'
-#uim-xim &
-
+export PATH=$PATH:$HOME/bin
 
 xrdb -merge $HOME/.Xresources&
 emacs --daemon&
 #xautolock -time 15 -locker "xlock -mode blank"&
-/home/chrols/.dropbox-dist/dropboxd&
+$HOME/.dropbox-dist/dropboxd&
 #xflux -l 58.28&
 # unclutter &
 # For laptop
 # gsynaptics-init&
-
-
-# Start a D-Bus session
-#source /etc/X11/xinit/xinitrc.d/30-dbus
-# Start GNOME Keyring
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-eval $(gnome-keyring-daemon --start)
-# You probably need to do this too:
-
-export SSH_AUTH_SOCK
-export GPG_AGENT_INFO
-export GNOME_KEYRING_CONTROL
-export GNOME_KEYRING_PID
-export GNOME_KEYRING_SOCKET
-export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"
-
-#xfce4-power-manager&
-#deluged&
 
 
 case $1 in
