@@ -49,9 +49,7 @@ urxvt*cutchars:        '"'()*<>[]{|}
 !
 ! Appearance
 
-urxvt*font: xft:DejaVu Sans Mono-10
-!urxvt*font: Inconsolata
-!urxvt*font: xft:Inconsolata-11
+urxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13
 
 !urxvt*font: 	  -bitstream-bitstream vera sans mono-medium-r-*--12-*-*-*-*-*-*-1
 !urxvt*boldFont:   -bitstream-bitstream vera sans mono-bold-r-*--10-*-*-*-*-*-*-1
