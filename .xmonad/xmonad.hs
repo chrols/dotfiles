@@ -226,11 +226,10 @@ main = do
         , ((0, xK_section), spawn "exo-open --launch TerminalEmulator")
 
         , ((mod4Mask, xK_b), sendMessage ToggleStruts)
-        , ((mod4Mask, xK_p), spawn "exe=`dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb black -sf grey` && eval \"exec $exe\"")
-
+        , ((mod4Mask, xK_p), spawn "/usr/bin/dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb 'black' -sf 'grey'")
         , ((mod4Mask, xK_F3), spawn "/usr/bin/dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb 'black' -sf 'grey'")
         , ((mod4Mask .|. shiftMask, xK_F1), spawn "setxkbmap se")
-        , ((mod4Mask .|. shiftMask, xK_F2), spawn "setxkbmap se -variant dvorak")
+        , ((mod4Mask .|. shiftMask, xK_F2), spawn "setxkbmap se -variant dvorak_a5")
 
         , ((mod4Mask .|. shiftMask, xK_F10), spawn "systemctl poweroff")
         , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")
