@@ -230,6 +230,7 @@ main = do
         , ((mod4Mask, xK_F3), spawn "/usr/bin/dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb 'black' -sf 'grey'")
         , ((mod4Mask .|. shiftMask, xK_F1), spawn "setxkbmap se")
         , ((mod4Mask .|. shiftMask, xK_F2), spawn "setxkbmap se -variant dvorak_a5")
+        , ((mod4Mask .|. shiftMask, xK_F3), spawn "xrandr --auto")
 
         , ((mod4Mask .|. shiftMask, xK_F10), spawn "systemctl poweroff")
         , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")
