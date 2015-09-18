@@ -1,3 +1,4 @@
+-- # -*- mode: haskell -*-
 Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
@@ -20,10 +21,12 @@ Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
 		    , Run Com "cputemp" [] "cputemp" 50
 		    , Run Com "gputemp" [] "gputemp" 50
 		    , Run Com "xmobar-volume" [] "volume" 50
-                    , Run Com "/usr/bin/perl" ["/home/chrols/bin/xmobar-stocks", "^OMXS30%", "^GSPC%", "^N225%"] "stocks" 600
+                    , Run Com "/usr/bin/perl" ["/home/chrols/bin/xmobar-stocks", "^OMX%", "^GSPC%", "^N225%"] "stocks" 600
                     , Run TopProc [] 10
 		    , Run StdinReader
                     , Run Date "%a %b %d - %H:%M" "date" 600
+                    , Run DiskU [("/", "/:<freep>%"), ("sdb1", "<usedbar>")] ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 20
+                    , Run DiskIO [("/", "<read> <write>"), ("sdb1", "<total>")] [] 10
                     , Run BatteryP ["BAT0"]
               ["-t", "<acstatus><watts> (<left>%)",
                "-L", "10", "-H", "80", "-p", "3",
@@ -34,5 +37,5 @@ Config { font = "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ %top% %multicpu% Vol: %volume% %wlan0% / %wlan0wi% %eth0% CPU: %cputemp% GPU:%gputemp% Ute: %ESSP% | %battery% | %stocks% <fc=#ee9a00>%date%</fc>"
+       , template = " %StdinReader% }{ %top% %multicpu% | %wlan0% / %wlan0wi% %eth0% | CPU: %cputemp% | %disku% | %diskio% | %battery% | <fc=#ee9a00>%date%</fc>"
        }
