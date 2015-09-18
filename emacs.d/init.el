@@ -66,3 +66,17 @@
             (setq sgml-basic-offset 4)
             (setq indent-tabs-mode t)
             (setq tab-width 4)))
+
+(put 'upcase-region 'disabled nil)
+(global-set-key [f4] 'ff-find-other-file)
+(setq show-trailing-whitespace t)
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/upstream/ethan-wspace/lisp"))
+(require 'ethan-wspace)
+(global-ethan-wspace-mode 1)
+
+(require 'whitespace)
+(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+
+(add-hook 'prog-mode-hook 'whitespace-mode)
