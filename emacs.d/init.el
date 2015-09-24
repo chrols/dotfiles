@@ -55,6 +55,10 @@
 (require 'powerline)
 (powerline-default-theme)
 
+(add-to-list 'load-path "~/.emacs.d/git/dockerfile-mode")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
 (setq initial-scratch-message nil)
 
 (global-linum-mode 1)
