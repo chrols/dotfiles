@@ -89,7 +89,6 @@ alias vecka="python -c 'import datetime; print(datetime.date.today().isocalendar
 alias week="python -c 'import datetime; print(datetime.date.today().isocalendar()[1])'"
 
 alias vpn-cs-connect="sudo vpnc /etc/vpnc/cs.conf"
-alias ynab="wine /home/chrols/.wine/drive_c/Program\ Files\ \(x86\)/YNAB\ 4/YNAB\ 4.exe"
 
 alias tyska-från="google-translate de en"
 alias tyska-till="google-translate en de"
