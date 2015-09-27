@@ -30,12 +30,12 @@ import XMonad.Util.Run(spawnPipe)
 import qualified XMonad.Prompt 		as P
 import XMonad.Prompt.Shell
 import XMonad.Prompt
- 
+
 -- hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
- 
+
 -- layouts
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
@@ -44,10 +44,10 @@ import XMonad.Layout.IM
 import XMonad.Layout.Tabbed
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Grid
- 
+
 -- Data.Ratio for IM layout
 import Data.Ratio ((%))
- 
+
 
 -- import Utils
 -- import ScratchPadKeys             (scratchPadList, manageScratchPads, scratchPadKeys)
@@ -57,7 +57,7 @@ import Data.Ratio ((%))
 
 ------------------------------------------------------------------------
 -- Window rules:
-  
+
 -- Execute arbitrary actions and WindowSet manipulations when managing
 -- a new window. You can use this to, for example, always float a
 -- particular program, or have a client always appear on a particular
@@ -69,23 +69,24 @@ import Data.Ratio ((%))
 --
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
-      
--- hooks
--- automaticly switching app to workspace 
 
---myWorkspaces = ["1:emacs", "2:web", "3:code", "4:pdf", "5:doc", "6:vbox" ,"7:music", "8:bittorrent", "9:gimp"] 
---myWorkspaces = ["1:web", "2:code", "3:video", "4:music", "5:torrent", "6:doc" ,"7:games", "8:vbox", "9:chat"] 
+-- hooks
+-- automaticly switching app to workspace
+
+--myWorkspaces = ["1:emacs", "2:web", "3:code", "4:pdf", "5:doc", "6:vbox" ,"7:music", "8:bittorrent", "9:gimp"]
+--myWorkspaces = ["1:web", "2:code", "3:video", "4:music", "5:torrent", "6:doc" ,"7:games", "8:vbox", "9:chat"]
 
 -- Class name can be determined by xprop |grep WM_CLASS
 
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1", "2", "3", "4", "5", "6" ,"7", "8", "9"] 
+myWorkspaces = ["1:web", "2:code", "3:term", "4:media", "5:monitor", "6" ,"7", "8:vm", "9:im"]
 --
 
 myManageHook :: ManageHook
 myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( composeAll . concat $
                 [[isFullscreen                  --> doFullFloat
+                 , isDialog --> doFullFloat
                  , className =? "Xmessage" 	    --> doCenterFloat
                  , className =? "Zenity" 	    --> doCenterFloat
                  , className =? "feh" 	            --> doCenterFloat
@@ -93,7 +94,9 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( c
                  , className =? "Chromium"           --> doShift "1"
                  , className =? "Emacs"             --> doShift "2"
                  , className =? "MPlayer"	--> doCenterFloat
+                 , className =? "mplayer2"	--> doCenterFloat
                  , className =? "Clementine"	--> doShift "4"
+                 , className =? "Spotify"	--> doShift "4"
                  , className =? "Deluge"	--> doShift "5"
                  , className =? "games-strategy-engine-framework-GameRunner" --> doShift "7"
                  , className =? "bsnes"	--> doShift "7"
@@ -103,21 +106,25 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( c
                  , className =? "VirtualBox"	--> doShift "8"
                  , className =? "avidemux2_gtk" --> doShift "6"
                  , className =? "Avidemux2_gtk" --> doShift "6"
+                 , className =? "Steam" --> doFloat
+                 , className =? "steam" --> doFullFloat
+--                 , className =? "Steam" --> doIgnore
+                  --                 , className =? "stalonetray"    --> doIgnore
                  , className =? "zsnes"        --> doCenterFloat
 
                  ]
- 
+
 		]
                         )  <+> manageDocks
 
 --logHook
 myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ customPP { ppOutput = hPutStrLn h }
- 
+
 ---- Looks --
 ---- bar
 customPP :: PP
-customPP = defaultPP { 
+customPP = defaultPP {
      			    ppHidden = xmobarColor "#00FF00" ""
 			  , ppCurrent = xmobarColor "#FF0000" "" . wrap "[" "]"
 			  , ppUrgent = xmobarColor "#FF0000" "" . wrap "*" "*"
@@ -125,18 +132,18 @@ customPP = defaultPP {
                           , ppTitle = xmobarColor "#00FF00" "" . shorten 80
                           , ppSep = "<fc=#0033FF> | </fc>"
                      }
- 
+
 -- some nice colors for the prompt windows to match the dzen status bar.
-myXPConfig = defaultXPConfig                                    
-    { 
-	font  = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u" 
+myXPConfig = defaultXPConfig
+    {
+	font  = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
 	,fgColor = "#00FFFF"
 	, bgColor = "#000000"
 	, bgHLight    = "#000000"
 	, fgHLight    = "#FF0000"
 	, position = Top
     }
- 
+
 --- My Theme For Tabbed layout
 myTheme = defaultTheme { decoHeight = 16
                         , activeColor = "#a6c292"
@@ -144,29 +151,29 @@ myTheme = defaultTheme { decoHeight = 16
                         , activeTextColor = "#000000"
                         , inactiveBorderColor = "#000000"
                         }
- 
+
 --LayoutHook
 
-myLayoutHook  =  
---                 onWorkspace "1" webL $ 
---                 onWorkspace "2" codeL $  
---                 onWorkspace "3" fullL $                  
---                 onWorkspace "4" fullL $                                   
---                 onWorkspace "5" fullL $                                   
---                 onWorkspace "6" fullL $ 
---                 onWorkspace "7" fullL $ 
-                 onWorkspace "9" imLayout $ 
-                 standardLayouts 
-  
+myLayoutHook  =
+--                 onWorkspace "1" webL $
+--                 onWorkspace "2" codeL $
+--                 onWorkspace "3" fullL $
+--                 onWorkspace "4" fullL $
+--                 onWorkspace "5" fullL $
+--                 onWorkspace "6" fullL $
+--                 onWorkspace "7" fullL $
+                 onWorkspace "9" imLayout $
+                 standardLayouts
+
   where
-	standardLayouts =   avoidStruts  $ (noBorders Full ||| tiled ||| Mirror tiled ||| Grid) 
- 
+	standardLayouts =   avoidStruts  $ (noBorders Full ||| tiled ||| Mirror tiled ||| Grid)
+
         --Layouts
 	tiled     = smartBorders (ResizableTall 1 (2/100) (1/2) [])
         reflectTiled = (reflectHoriz tiled)
 	tabLayout = noBorders (tabbed shrinkText myTheme)
 	full 	  = noBorders Full
- 
+
         --Im Layout
         imLayout = avoidStruts $ smartBorders $ withIM ratio pidginRoster $ reflectHoriz $ withIM skypeRatio skypeRoster (tiled ||| reflectTiled ||| Grid) where
                 chatLayout      = Grid
@@ -174,63 +181,74 @@ myLayoutHook  =
                 skypeRatio = (1%8)
                 pidginRoster    = And (ClassName "Pidgin") (Role "buddy_list")
                 skypeRoster     = (ClassName "Skype") `And` (Not (Title "Options")) `And` (Not (Role "Chats")) `And` (Not (Role "CallWindowForm"))
- 
+
 	--Gimp Layout
---	gimpL = avoidStruts $ smartBorders $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full 
- 
+--	gimpL = avoidStruts $ smartBorders $ withIM (0.11) (Role "gimp-toolbox") $ reflectHoriz $ withIM (0.15) (Role "gimp-dock") Full
+
 	--Web Layout
-	webL      = avoidStruts $  full ||| tabLayout  ||| tiled ||| reflectHoriz tiled ||| Grid        
+	webL      = avoidStruts $  full ||| tabLayout  ||| tiled ||| reflectHoriz tiled ||| Grid
 	codeL      = avoidStruts $  full ||| tiled ||| reflectHoriz tiled ||| Grid
- 
+
         --VirtualLayout
         fullL = avoidStruts $ full ||| tiled ||| Grid
-    
+
 -- borders
 myBorderWidth :: Dimension
 myBorderWidth = 1
---  
+--
 myNormalBorderColor, myFocusedBorderColor :: String
 myNormalBorderColor = "#333333"
 myFocusedBorderColor = "#FF0000"
 --
-   
+
 -- Switch to the "web" workspace
 viewWeb = windows (W.greedyView "1")                           -- (0,0a)
 
 main = do
-  xmproc <- spawnPipe "xmobar"  -- start xmobar  
+  xmproc <- spawnPipe "xmobar"  -- start xmobar
   spawn "pkill -f trayer"
   spawn "tray"
-  xmonad $ defaultConfig 
-        { modMask = mod4Mask        
-        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
+
+  xmonad $ defaultConfig
+        {
+         modMask = mod4Mask
+--        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
+        , startupHook = setWMName "LG3D"
         , layoutHook = myLayoutHook
-        , terminal = "urxvt"
+        , terminal =  "uxterm" -- "exo-open --launch TerminalEmulator"
         , manageHook = myManageHook
         , borderWidth = 1
         , normalBorderColor = "#60A1AD"
-        , focusedBorderColor = "#ff0000" 
+        , focusedBorderColor = "#ff0000"
         , logHook = myLogHook xmproc
         , workspaces = myWorkspaces
         , focusFollowsMouse = True
         } `additionalKeys`
-        [ ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c")
-        , ((mod4Mask .|. shiftMask, xK_t), spawn "dolphin")
-        , ((mod4Mask .|. shiftMask, xK_f), spawn "firefox")
-        , ((mod4Mask .|. shiftMask, xK_d), spawn "deluge")
-        , ((mod4Mask .|. shiftMask, xK_m), spawn "clementine")
-        , ((mod4Mask .|. shiftMask, xK_l), spawn "xlock -mode blank")
-        --, ((modMask .|. shiftMask, xK_h ), sendMessage MirrorShrink)
-        --, ((modMask .|. shiftMask, xK_l ), sendMessage MirrorExpand)
+
+        [ ((mod4Mask , xK_F1), spawn "firefox")
+        , ((mod4Mask , xK_F2), spawn "emacsclient -c")
+        , ((mod4Mask , xK_F3), spawn "dolphin")
+        , ((mod4Mask , xK_F4), spawn "spotify")
+        , ((mod4Mask , xK_F5), spawn "deluge")
+         , ((mod4Mask .|. shiftMask, xK_f), spawn "firefox")
+         , ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c")
+         , ((mod4Mask .|. shiftMask, xK_t), spawn "dolphin")
+         , ((mod4Mask .|. shiftMask, xK_d), spawn "deluge")
+         , ((mod4Mask .|. shiftMask, xK_m), spawn "spotify")
+         , ((mod4Mask .|. shiftMask, xK_l), spawn "xlock -mode blank")
+        -- , ((modMask .|. shiftMask, xK_h ), sendMessage MirrorShrink)
+        -- , ((modMask .|. shiftMask, xK_l ), sendMessage MirrorExpand)
+
 
         , ((0, xK_section), spawn "exo-open --launch TerminalEmulator")
 
         , ((mod4Mask, xK_b), sendMessage ToggleStruts)
-        , ((mod4Mask, xK_p), spawn "/usr/bin/dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb 'black' -sf 'grey'")
+        , ((mod4Mask, xK_p), spawn "exe=`dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb black -sf grey` && eval \"exec $exe\"")
         , ((mod4Mask, xK_F3), spawn "/usr/bin/dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb 'black' -sf 'grey'")
+
         , ((mod4Mask .|. shiftMask, xK_F1), spawn "setxkbmap se")
         , ((mod4Mask .|. shiftMask, xK_F2), spawn "setxkbmap se -variant dvorak_a5")
-        , ((mod4Mask .|. shiftMask, xK_F3), spawn "xrandr --auto")
+        , ((mod4Mask .|. shiftMask, xK_F3), spawn "setxkbmap se -variant dvorak_a5")
 
         , ((mod4Mask .|. shiftMask, xK_F10), spawn "systemctl poweroff")
         , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")
@@ -238,7 +256,21 @@ main = do
 
         , ((0 , 0x1008ff18), spawn "/usr/bin/firefox http://www.reddit.com") -- 0x1008ff18, XF86HomePage
         , ((0 , 0x1008ff19), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff19, XF86Mail
-        , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff1b, XF86Search 
+        , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff1b, XF86Search
+
+          -- For Spotify
+
+        , ((mod4Mask , xK_Up),    spawn "/bin/dbus-send --print-reply --dest=com.spotify.qt /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+        , ((mod4Mask , xK_Right), spawn "/bin/dbus-send --print-reply --dest=com.spotify.qt /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+        , ((mod4Mask , xK_Left),  spawn "/bin/dbus-send --print-reply --dest=com.spotify.qt /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+
+-- Dest=org.mpris.MediaPlayer2.spotify for Spotify
+-- Dest=com.spotify.qt for Spotify
+-- Dest=org.mpris.MediaPlayer2.clementine for Clementine
+
+        , ((0 , 0x1008ff14), spawn "/bin/dbus-send --print-reply --dest=com.spotify.qt /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") -- XF86AudioPlay
+        , ((0 , 0x1008ff27), spawn "/bin/dbus-send --print-reply --dest=com.spotify.qt /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") -- XF86AudioNext
+        , ((0 , 0x1008ff26), spawn "/bin/dbus-send --print-reply --dest=com.spotify.qt /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") -- XF86AudioPrev
 
           -- 0x1008ff45, XF86Launch5
         , ((0 , 0x1008ff45), spawn "/usr/local/eclipse/eclipse")
@@ -251,17 +283,12 @@ main = do
         , ((0 , 0x1008ff1d), spawn "exo-open --launch TerminalEmulator python") -- 0x1008ff1d, XF86Calculator
 
         , ((0 , 0x1008ff12), spawn "amixer -q set Master toggle")     -- XF86AudioMute
-
-
---        , ((0 , 0x1008ff11), spawn "pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo -- -5%") -- XF86AudioLowerVolume
-  --      , ((0 , 0x1008ff13), spawn "pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo -- +5%") -- XF86AudioRaiseVolume
-
+         , ((mod4Mask , xK_Page_Down), spawn "amixer -q set Master  1- unmute")
+         , ((mod4Mask , xK_Page_Up), spawn "amixer -q set Master 1+ unmute")
          , ((0 , 0x1008ff11), spawn "amixer -q set Master  1- unmute") -- XF86AudioLowerVolume
          , ((0 , 0x1008ff13), spawn "amixer -q set Master 1+ unmute")  -- XF86AudioRaiseVolume
 
         , ((mod4Mask, xK_Print), spawn "sleep 2; export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
         , ((0, xK_Print), spawn "export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
         ]
-
-
-
+-- e4 f6
