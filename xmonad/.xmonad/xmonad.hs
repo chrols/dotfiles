@@ -283,10 +283,10 @@ main = do
         , ((0 , 0x1008ff1d), spawn "exo-open --launch TerminalEmulator python") -- 0x1008ff1d, XF86Calculator
 
         , ((0 , 0x1008ff12), spawn "amixer -q set Master toggle")     -- XF86AudioMute
-         , ((mod4Mask , xK_Page_Down), spawn "amixer -q set Master  1- unmute")
-         , ((mod4Mask , xK_Page_Up), spawn "amixer -q set Master 1+ unmute")
-         , ((0 , 0x1008ff11), spawn "amixer -q set Master  1- unmute") -- XF86AudioLowerVolume
-         , ((0 , 0x1008ff13), spawn "amixer -q set Master 1+ unmute")  -- XF86AudioRaiseVolume
+         , ((mod4Mask , xK_Page_Down), spawn "amixer -q set Master  1%- unmute")
+         , ((mod4Mask , xK_Page_Up), spawn "amixer -q set Master 1%+ unmute")
+         , ((0 , 0x1008ff11), spawn "amixer -q set Master  1%- unmute") -- XF86AudioLowerVolume
+         , ((0 , 0x1008ff13), spawn "amixer -q set Master 1%+ unmute")  -- XF86AudioRaiseVolume
 
         , ((mod4Mask, xK_Print), spawn "sleep 2; export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
         , ((0, xK_Print), spawn "export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
