@@ -4,11 +4,11 @@ Eclipse*fontList:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
 *inputMethod: kinput2
 emacs.FontBackend: xft
 !Emacs.font: Monospace-8
-emacs*font:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
+!emacs*font:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
 !emacs.font:consolas-10
 !emacs.font:dina-10
 !emacs.font:Terminal-10
-!emacs.font:DejaVu Sans Mono-11
+emacs.font:DejaVu Sans Mono-10
 !emacs.font: Inconsolata-12
 
 xterm*faceName: DejaVu Sans Mono
