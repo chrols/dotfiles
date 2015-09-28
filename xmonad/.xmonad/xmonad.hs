@@ -215,7 +215,7 @@ main = do
 --        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
         , startupHook = setWMName "LG3D"
         , layoutHook = myLayoutHook
-        , terminal =  "uxterm" -- "exo-open --launch TerminalEmulator"
+        , terminal =  "urxvt" -- "exo-open --launch TerminalEmulator"
         , manageHook = myManageHook
         , borderWidth = 1
         , normalBorderColor = "#60A1AD"
@@ -240,7 +240,7 @@ main = do
         -- , ((modMask .|. shiftMask, xK_l ), sendMessage MirrorExpand)
 
 
-        , ((0, xK_section), spawn "exo-open --launch TerminalEmulator")
+        , ((0, xK_section), spawn "urxvt")
 
         , ((mod4Mask, xK_b), sendMessage ToggleStruts)
         , ((mod4Mask, xK_p), spawn "exe=`dmenu_run  -fn '-misc-fixed-*-*-*-*-15-*-*-*-*-*-*-*' -nb black -sf grey` && eval \"exec $exe\"")
