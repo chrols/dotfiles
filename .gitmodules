@@ -4,3 +4,9 @@
 [submodule "emacs/.emacs.d/git/powerline"]
 	path = emacs/.emacs.d/git/powerline
 	url = https://github.com/milkypostman/powerline.git
+[submodule "emacs/.emacs.d/git/dockerfile-mode"]
+	path = emacs/.emacs.d/git/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "emacs/.emacs.d/git/ethan-wspace"]
+	path = emacs/.emacs.d/git/ethan-wspace
+	url = https://github.com/glasserc/ethan-wspace.git

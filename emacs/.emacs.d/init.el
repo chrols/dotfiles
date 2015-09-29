@@ -1,24 +1,18 @@
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(package-initialize)
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 
 ;; Add in your own as you wish:
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
                       starter-kit-eshell
-                      clojure-mode
-                      clojure-test-mode
-                      nrepl
                       jedi
                       color-theme
                       color-theme-monokai
                       color-theme-molokai)
   "A list of packages to ensure are installed at launch.")
+
+(package-initialize)
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -75,7 +69,7 @@
 (global-set-key [f4] 'ff-find-other-file)
 (setq show-trailing-whitespace t)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/upstream/ethan-wspace/lisp"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/git/ethan-wspace/lisp"))
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
 
