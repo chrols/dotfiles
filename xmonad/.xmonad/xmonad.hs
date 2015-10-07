@@ -16,6 +16,10 @@ import System.Exit
 import Graphics.X11.Xlib
 import System.IO
 
+import Network.HostName
+import Text.Printf
+import qualified Data.List as List
+
 -- actions
 import XMonad.Actions.CycleWS
 import XMonad.Actions.WindowGo
@@ -196,18 +200,213 @@ myLayoutHook  =
 myBorderWidth :: Dimension
 myBorderWidth = 1
 --
-myNormalBorderColor, myFocusedBorderColor :: String
-myNormalBorderColor = "#333333"
-myFocusedBorderColor = "#FF0000"
+-- myNormalBorderColor, myFocusedBorderColor :: String
+-- myNormalBorderColor = "#333333"
+-- myFocusedBorderColor = "#FF0000"
 --
 
 -- Switch to the "web" workspace
 viewWeb = windows (W.greedyView "1")                           -- (0,0a)
 
+------------------------------------------------------------------------
+-- Xmobar configuration
+------------------------------------------------------------------------
+
+myNormalBorderColor :: String
+myNormalBorderColor  = "#dcdccc"
+
+myFocusedBorderColor :: String
+myFocusedBorderColor = "#de7168"
+
+myXmobarFgColor :: String
+myXmobarFgColor = myNormalBorderColor
+
+myXmobarBgColor :: String
+myXmobarBgColor = "#000000"
+
+myXmobarHiColor :: String
+myXmobarHiColor = "#575757"
+
+myXmobarCursorColor :: String
+myXmobarCursorColor  = "#ff8278"
+
+myXmobarColorNormal :: String
+myXmobarColorNormal = "blue"
+
+myXmobarColorBad :: String
+myXmobarColorBad = myXmobarCursorColor
+
+myXmobarColorGood :: String
+myXmobarColorGood = "#9ec400"
+
+myXFTFont :: String
+-- myXFTFont = "xft:DejaVu Sans Mono for Powerline-10:antialias=true"
+myXFTFont =  "-misc-fixed-*-*-*-*-14-*-*-*-*-*-*-*"
+
+xmobarComParameters :: [String] -> String
+xmobarComParameters [] = " [] "
+xmobarComParameters c  = " [\"" ++ List.intercalate "\",\"" c ++ "\"] "
+
+xmobarLook :: String
+xmobarLook = concat
+  [ " --font=\"", myXFTFont, "\""
+  , " --bgcolor=\"", myXmobarBgColor, "\""
+  , " --fgcolor=\"", myXmobarFgColor, "\""
+  ]
+
+xmobarStdin :: String
+xmobarStdin =
+  "Run StdinReader"
+
+xmobarCommand :: String -> [String] -> String -> Integer -> String
+xmobarCommand c p = printf "Run Com \"%s\" %s \"%s\" %d" c (xmobarComParameters p)
+
+xmobarCpuTemp :: String -> Integer -> String
+xmobarCpuTemp = xmobarCommand "xmobar-cputemp" ["red", "lightblue", "green"]
+
+xmobarGpuTemp :: String -> Integer -> String
+xmobarGpuTemp = xmobarCommand "xmobar-gputemp" ["red", "lightblue", "green"]
+
+xmobarStocks :: String -> Integer -> String
+xmobarStocks = xmobarCommand "xmobar-stocks" ["^OMXS30%", "^GSPC%", "^N225%"]
+
+xmobarVolume :: String -> Integer -> String
+xmobarVolume = xmobarCommand "xmobar-volume" []
+
+xmobarTopProc :: Integer -> String
+xmobarTopProc rr = concat
+  [ "Run TopProc []"
+  , show rr
+  ]
+
+-- Weather stations:
+--
+-- ESSL Linkoping
+-- ESSP Norrkoping
+-- ESOW Vasteras
+
+xmobarWeather :: String -> Integer -> String
+xmobarWeather station rr = concat
+  [ "Run Weather \"" ++ station ++ "\""
+  , xmobarComParameters ["-t", "<tempC>"
+                        ,"-L", "14"
+                        ,"-H", "25"
+                        ,"--normal", "green"
+                        ,"--high", "red"
+                        ,"--low", "lightblue"
+                        ]
+  , show rr
+  ]
+
+xmobarMultiCpu ::  Integer -> String
+xmobarMultiCpu rr = concat
+  [ "Run MultiCpu"
+  , xmobarComParameters ["-t","CPU:<total0><total1><total2><total3>"
+                        ,"-L","2"
+                        ,"-H","50"
+                        ,"--normal","#CEFFAC"
+                        ,"--high","#FFB6B0"
+                        ,"-w","3"
+                        ]
+  , show rr
+  ]
+
+xmobarDynNetwork ::  Integer -> String
+xmobarDynNetwork rr = concat
+  [ "Run DynNetwork"
+  , xmobarComParameters [
+                        "-L","2"
+                        ,"-H","50"
+                        ,"--normal","#CEFFAC"
+                        ,"--high","#FFB6B0"
+                        ]
+  , show rr
+  ]
+
+xmobarBattery :: Integer -> String
+xmobarBattery rr = concat
+  [ "Run BatteryP"
+  , xmobarComParameters [ "BAT0", "BAT1" ]
+  , xmobarComParameters [ "--template", "<acstatus> : <left>% : <timeleft>h"
+                        , "--Low"     , "10"
+                        , "--High"    , "80"
+                        , "--low"     , myXmobarColorBad
+                        , "--normal"  , myXmobarFgColor
+                        , "--high"    , myXmobarColorGood
+                        , "--"
+                        , "-o", "<fc=" ++ myXmobarColorBad  ++ ">D</fc>"
+                        , "-O", "<fc=" ++ myXmobarColorGood ++ ">C</fc>"
+                        , "-i", "<fc=" ++ myXmobarFgColor   ++ ">F</fc>"
+                        ]
+  , show rr
+  ]
+
+xmobarMemory :: Integer -> String
+xmobarMemory rr = concat
+  [ "Run Memory"
+  , xmobarComParameters [ "--template", "MEM : <usedratio>%"
+                        , "--Low"     , "20"
+                        , "--High"    , "90"
+                        , "--low"     , myXmobarColorGood
+                        , "--normal"  , myXmobarFgColor
+                        , "--high"    , myXmobarColorBad
+                        ]
+  , show rr
+  ]
+
+
+xmobarDate :: Integer -> String
+-- xmobarDate rr = "Run Date \"%H:%M:%S\" \"date\" " ++ show rr
+xmobarDate rr = "Run Date \"%a %b %d - %H:%M:%S\" \"date\" " ++ show rr
+
+xmobarCommands :: [String] -> String
+xmobarCommands c = " --commands=\'[" ++ List.intercalate ", " c ++ "]\'"
+
+xmobarPipe :: String -> String -> String
+xmobarPipe f a = "Run PipeReader \"" ++ f ++ "\" \"" ++ a ++ "\""
+
+
+xmobarTemplate :: String -> String
+xmobarTemplate "athena" =
+  xmobarCommands [ xmobarStdin
+                 , xmobarTopProc 20
+                 , xmobarMultiCpu 20
+                 , xmobarMemory 100
+                 , xmobarDynNetwork 600
+                 , xmobarStocks "stocks" 600
+                 , xmobarCpuTemp "cputemp" 60
+                 , xmobarGpuTemp "gputemp" 60
+                 , xmobarVolume "volume" 10
+                 , xmobarWeather "ESSP" 36000
+                 , xmobarDate 10
+                 ]
+  ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% CPU: %cputemp% GPU: %gputemp% Ute: %ESSP% | %stocks% %volume% <fc=#ee9a00>%date%</fc> \'"
+
+
+xmobarTemplate "hecate" =
+  xmobarCommands [ xmobarStdin
+                 , xmobarTopProc 20
+                 , xmobarMultiCpu 20
+                 , xmobarMemory 100
+                 , xmobarDynNetwork 600
+                 , xmobarWeather "ESSP" 36000
+                 , xmobarDate 10
+                 ]
+  ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% Ute: %ESSP% <fc=#ee9a00>%date%</fc> \'"
+
+
+xmobarTemplate _ = ""
+
+xmobarParameters :: String -> String
+xmobarParameters h = xmobarLook ++ xmobarTemplate h
+
+main :: IO()
 main = do
-  xmproc <- spawnPipe "xmobar"  -- start xmobar
+  hostName <- getHostName
+  xmobar <- spawnPipe ("xmobar" ++ xmobarParameters hostName)
   spawn "pkill -f trayer"
   spawn "tray"
+  spawn "xfsettingsd"
 
   xmonad $ defaultConfig
         {
@@ -220,7 +419,7 @@ main = do
         , borderWidth = 1
         , normalBorderColor = "#60A1AD"
         , focusedBorderColor = "#ff0000"
-        , logHook = myLogHook xmproc
+        , logHook = myLogHook xmobar
         , workspaces = myWorkspaces
         , focusFollowsMouse = True
         } `additionalKeys`

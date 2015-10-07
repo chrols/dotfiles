@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# To be called from Xmobar with colors: xmobar-cputemp $BAD $GOOD $NORMAL
+
+TEMP=`sensors|grep temp1|grep -v therm|cut -f 2 -d +|cut -f 1 -d C|cut -f 1 -d .|tail -n 1`
+
+if [ $# -eq 3 ]; then 
+    if [ $TEMP -ge 60 ]; then
+        COLOR=$1
+    elif [ $TEMP -le 40 ]; then
+        COLOR=$2
+    else
+        COLOR=$3
+    fi
+    echo "<fc=$COLOR>$TEMP</fc>"
+else
+    echo "$TEMP"
+fi
+    
+
+
+
