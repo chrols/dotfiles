@@ -1,0 +1,29 @@
+[user]
+	name = Christian Olsson
+	email = christian@chargestorm.se
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 1600x1023+0+31
+	history-view-vpane-position = 279
+	main-window-view = HistoryView
+	file-view-hpane-position = 348
+	file-view-vpane-position = 959
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[push]
+	default = simple
+[branch "master"]
+	rebase = true
+[branch]
+	autosetuprebase = always
+
+[merge]
+        tool = ediff
+
+[mergetool "ediff"]
+           cmd = /home/chrols/bin/ediff.sh $LOCAL $REMOTE $MERGED $BASE
+           trustExitCode = true
+[core]
+	autocrlf = false
