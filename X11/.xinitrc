@@ -3,8 +3,8 @@ BIN=/home/chrols/src/scripts
 
 pulseaudio --start
 setxkbmap -option terminate:ctrl_alt_bksp
-#setxkbmap se -variant dvorak
-setxkbmap se
+
+setxkbmap se -variant dvorak_a5
 xset -b
 
 export PATH=$PATH:$HOME/bin
