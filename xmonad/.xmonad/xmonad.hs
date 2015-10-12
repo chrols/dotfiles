@@ -16,7 +16,7 @@ import System.Exit
 import Graphics.X11.Xlib
 import System.IO
 
-import Network.HostName
+import Data.Char (isSpace)
 import Text.Printf
 import qualified Data.List as List
 
@@ -400,10 +400,14 @@ xmobarTemplate _ = ""
 xmobarParameters :: String -> String
 xmobarParameters h = xmobarLook ++ xmobarTemplate h
 
+
+rstrip :: String -> String
+rstrip = reverse . dropWhile isSpace . reverse
+
 main :: IO()
 main = do
-  hostName <- getHostName
-  xmobar <- spawnPipe ("xmobar" ++ xmobarParameters hostName)
+  hostName <- readFile "/etc/hostname"
+  xmobar <- spawnPipe ("xmobar" ++ xmobarParameters (rstrip hostName))
   spawn "pkill -f trayer"
   spawn "tray"
   spawn "xfsettingsd"
