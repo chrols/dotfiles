@@ -451,7 +451,7 @@ main = do
 
         , ((mod4Mask .|. shiftMask, xK_F1), spawn "setxkbmap se")
         , ((mod4Mask .|. shiftMask, xK_F2), spawn "setxkbmap se -variant dvorak_a5")
-        , ((mod4Mask .|. shiftMask, xK_F3), spawn "setxkbmap se -variant dvorak_a5")
+        , ((mod4Mask .|. shiftMask, xK_F3), spawn "xrandr --auto")
 
         , ((mod4Mask .|. shiftMask, xK_F10), spawn "systemctl poweroff")
         , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")
