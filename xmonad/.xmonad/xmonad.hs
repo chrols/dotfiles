@@ -84,7 +84,7 @@ import Data.Ratio ((%))
 
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1:web", "2:code", "3:term", "4:media", "5:monitor", "6" ,"7", "8:vm", "9:im"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6" ,"7", "8", "9"]
 --
 
 myManageHook :: ManageHook
@@ -306,7 +306,7 @@ xmobarMultiCpu rr = concat
                         ,"-H","50"
                         ,"--normal","#CEFFAC"
                         ,"--high","#FFB6B0"
-                        ,"-w","3"
+                        ,"-w","4"
                         ]
   , show rr
   ]
@@ -344,7 +344,7 @@ xmobarBattery rr = concat
 xmobarMemory :: Integer -> String
 xmobarMemory rr = concat
   [ "Run Memory"
-  , xmobarComParameters [ "--template", "MEM : <usedratio>%"
+  , xmobarComParameters [ "--template", "RAM : <usedratio>%"
                         , "--Low"     , "20"
                         , "--High"    , "90"
                         , "--low"     , myXmobarColorGood
