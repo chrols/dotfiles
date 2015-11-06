@@ -18,6 +18,8 @@ $HOME/.dropbox-dist/dropboxd&
 # For laptop
 # gsynaptics-init&
 
+eval `ssh-agent -s`
+ssh-add ~/.ssh/chargestorm-dsa
 
 case $1 in
 	wmaker)
