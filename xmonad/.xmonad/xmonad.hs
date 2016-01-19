@@ -84,7 +84,7 @@ import Data.Ratio ((%))
 
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1", "2", "3", "4", "5", "6" ,"7", "8", "9"]
+myWorkspaces = ["1:web", "2:emacs", "3:qtcreator", "4:term", "5", "6:soapui" ,"7", "8", "9:im"]
 --
 
 myManageHook :: ManageHook
@@ -95,12 +95,15 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( c
                  , className =? "Zenity" 	    --> doCenterFloat
                  , className =? "feh" 	            --> doCenterFloat
                  , className =? "Firefox"           --> doShift "1"
-                 , className =? "Chromium"           --> doShift "1"
+                 , className =? "Chromium"          --> doShift "1"
                  , className =? "Emacs"             --> doShift "2"
+                 , className =? "QtCreator"         --> doShift "3"
+                 , className =? "URxvt"             --> doShift "4"
+                 , className =? "urxvt"             --> doShift "4"
                  , className =? "MPlayer"	--> doCenterFloat
                  , className =? "mplayer2"	--> doCenterFloat
-                 , className =? "Clementine"	--> doShift "4"
-                 , className =? "Spotify"	--> doShift "4"
+                 , className =? "Clementine"	--> doShift "5"
+                 , className =? "Spotify"	--> doShift "5"
                  , className =? "Deluge"	--> doShift "5"
                  , className =? "games-strategy-engine-framework-GameRunner" --> doShift "7"
                  , className =? "bsnes"	--> doShift "7"
@@ -326,16 +329,16 @@ xmobarDynNetwork rr = concat
 xmobarBattery :: Integer -> String
 xmobarBattery rr = concat
   [ "Run BatteryP"
-  , xmobarComParameters [ "BAT0", "BAT1" ]
-  , xmobarComParameters [ "--template", "<acstatus> : <left>% : <timeleft>h"
+  , xmobarComParameters [ "BAT0" ]
+  , xmobarComParameters [ "--template", "<acstatus>:<left>%" -- : <timeleft>h"
                         , "--Low"     , "10"
                         , "--High"    , "80"
                         , "--low"     , myXmobarColorBad
                         , "--normal"  , myXmobarFgColor
                         , "--high"    , myXmobarColorGood
                         , "--"
-                        , "-o", "<fc=" ++ myXmobarColorBad  ++ ">D</fc>"
-                        , "-O", "<fc=" ++ myXmobarColorGood ++ ">C</fc>"
+                        , "-o", "<fc=" ++ myXmobarColorBad  ++ ">-</fc>"
+                        , "-O", "<fc=" ++ myXmobarColorGood ++ ">+</fc>"
                         , "-i", "<fc=" ++ myXmobarFgColor   ++ ">F</fc>"
                         ]
   , show rr
@@ -372,7 +375,7 @@ xmobarTemplate "athena" =
                  , xmobarTopProc 20
                  , xmobarMultiCpu 20
                  , xmobarMemory 100
-                 , xmobarDynNetwork 600
+                 , xmobarDynNetwork 100
                  , xmobarStocks "stocks" 600
                  , xmobarCpuTemp "cputemp" 60
                  , xmobarGpuTemp "gputemp" 60
@@ -390,9 +393,10 @@ xmobarTemplate "hecate" =
                  , xmobarMemory 100
                  , xmobarDynNetwork 600
                  , xmobarWeather "ESSP" 36000
+                 , xmobarBattery 10
                  , xmobarDate 10
                  ]
-  ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% Ute: %ESSP% <fc=#ee9a00>%date%</fc> \'"
+  ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% Ute: %ESSP% %battery% <fc=#ee9a00>%date%</fc> \'"
 
 
 xmobarTemplate _ = ""
@@ -418,7 +422,7 @@ main = do
 --        , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"          -- Hold Java's hand
         , startupHook = setWMName "LG3D"
         , layoutHook = myLayoutHook
-        , terminal =  "urxvt" -- "exo-open --launch TerminalEmulator"
+        , terminal =  "uxterm" -- "exo-open --launch TerminalEmulator"
         , manageHook = myManageHook
         , borderWidth = 1
         , normalBorderColor = "#60A1AD"
@@ -430,12 +434,12 @@ main = do
 
         [ ((mod4Mask , xK_F1), spawn "firefox")
         , ((mod4Mask , xK_F2), spawn "emacsclient -c")
-        , ((mod4Mask , xK_F3), spawn "dolphin")
+        , ((mod4Mask , xK_F3), spawn "thunar")
         , ((mod4Mask , xK_F4), spawn "spotify")
         , ((mod4Mask , xK_F5), spawn "deluge")
          , ((mod4Mask .|. shiftMask, xK_f), spawn "firefox")
          , ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c")
-         , ((mod4Mask .|. shiftMask, xK_t), spawn "dolphin")
+         , ((mod4Mask .|. shiftMask, xK_t), spawn "thunar")
          , ((mod4Mask .|. shiftMask, xK_d), spawn "deluge")
          , ((mod4Mask .|. shiftMask, xK_m), spawn "spotify")
          , ((mod4Mask .|. shiftMask, xK_l), spawn "xlock -mode blank")
