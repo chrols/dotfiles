@@ -15,6 +15,7 @@ emacs --daemon&
 $HOME/.dropbox-dist/dropboxd&
 #xflux -l 58.28&
 # unclutter &
+redshift&
 # For laptop
 # gsynaptics-init&
 
