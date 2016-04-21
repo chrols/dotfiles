@@ -90,22 +90,18 @@ alias week="python -c 'import datetime; print(datetime.date.today().isocalendar(
 
 alias vpn-cs-connect="sudo vpnc /etc/vpnc/cs.conf"
 
-alias tyska-från="google-translate de en"
-alias tyska-till="google-translate en de"
-alias jap-från="google-translate ja en"
-alias jap-till="google-translate en ja"
-
-#alias make="make -j4"
-
 alias git-author-ranking="git ls-tree --name-only -z -r HEAD|egrep -z -Z -E '\.(cc|h|cpp|hpp|c|txt|java)$' |xargs -0 -n1 git blame --line-porcelain|grep \"^author \"|sort|uniq -c|sort -nr"
 alias t="todo.sh"
 alias w="sreport ^OMXS30% ^GSPC% ^N225%"
 alias ccu="ssh root@ccu"
-alias todo="emacs -nw ~/Dropbox/org/todo.org"
 alias eclipse="/home/chrols/bin/liferay-ide/eclipse"
+alias todo="emacs -nw -Q ~/Dropbox/org/todo.org"
+alias plan="emacs -nw -Q ~/Dropbox/org/plan.org"
+alias idea="emacs -nw -Q ~/Dropbox/org/idea.org"
 alias jar="fastjar"
 alias paint="pinta"
 alias mysql="mysql --safe-updates"
 alias portaldump="ssh root@demo.oamportal.com tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -"
 alias bfg="/bin/java -jar /home/chrols/bin/bfg-1.12.5.jar"
 alias vi="vim"
+alias gitk='echo Use tig instead'
