@@ -27,3 +27,6 @@ set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
+:set listchars=tab:>·,trail:~,extends:>,precedes:<
+:set list
+let g:powerline_pycmd = "py3"
