@@ -88,4 +88,5 @@ source $HOME/.aliases
 source $HOME/.env
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_rsa chargestorm-dsa
+zstyle :omz:plugins:ssh-agent identities id_rsa chargestorm-dsa christian_key.pem
+source $HOME/git/translate-shell/translate-shell.plugin.zsh
