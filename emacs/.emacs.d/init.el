@@ -89,3 +89,8 @@
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 
 (setq x-select-enable-clipboard t)
+
+(setq load-path (cons "~/.emacs.d/git/nasm-mode" load-path))
+(require 'nasm-mode)
+(add-to-list 'auto-mode-alist '("\\.asm$" . nasm-mode))
+
