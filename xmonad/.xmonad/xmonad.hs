@@ -84,7 +84,7 @@ import Data.Ratio ((%))
 
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1:web", "2:emacs", "3:qtcreator", "4:term", "5", "6:soapui" ,"7", "8", "9:im"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6" ,"7", "8", "9","A","B"]
 --
 
 myManageHook :: ManageHook
@@ -384,7 +384,6 @@ xmobarTemplate "athena" =
                  , xmobarDate 10
                  ]
   ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% CPU: %cputemp% GPU: %gputemp% Ute: %ESSP% | %stocks% %volume% <fc=#ee9a00>%date%</fc> \'"
-
 
 xmobarTemplate "hecate" =
   xmobarCommands [ xmobarStdin
