@@ -90,6 +90,11 @@
 
 (setq x-select-enable-clipboard t)
 
+(setq load-path (cons "~/.emacs.d/git/arduino-mode" load-path))
+(require 'arduino-mode)
+(setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
+(autoload 'arduino-mode "arduino-mode" "Arduino editing mode." t)
+
 (setq load-path (cons "~/.emacs.d/git/nasm-mode" load-path))
 (require 'nasm-mode)
 (add-to-list 'auto-mode-alist '("\\.asm$" . nasm-mode))

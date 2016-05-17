@@ -13,3 +13,6 @@
 [submodule "emacs/.emacs.d/git/nasm-mode"]
 	path = emacs/.emacs.d/git/nasm-mode
 	url = https://github.com/skeeto/nasm-mode.git
+[submodule "emacs/.emacs.d/git/arduino-mode"]
+	path = emacs/.emacs.d/git/arduino-mode
+	url = https://github.com/bookest/arduino-mode.git
