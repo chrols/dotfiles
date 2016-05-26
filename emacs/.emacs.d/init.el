@@ -32,8 +32,6 @@
 
 (setq-default show-trailing-whitespace t)
 
-(global-auto-complete-mode t)
-
 (setq load-path (cons "~/.emacs.d/git/powerline" load-path))
 (require 'powerline)
 (powerline-default-theme)
