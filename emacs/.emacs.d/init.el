@@ -3,7 +3,6 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(
-                      jedi
                       color-theme
                       color-theme-monokai
                       color-theme-molokai)
@@ -28,17 +27,9 @@
 
 (display-time)
 
-(require 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
-(setq jedi:server-command
-      (list "/usr/bin/python2" jedi:server-script))
-
 (global-set-key [f2] 'visit-ansi-term)
 (setq org-export-latex-tables-centered nil)
 
-(setq python-shell-interpreter "/usr/bin/python2")
 (setq-default show-trailing-whitespace t)
 
 (global-auto-complete-mode t)
