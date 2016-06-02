@@ -1,16 +1,26 @@
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;; Add in your own as you wish:
-(defvar my-packages '(
-                      color-theme
-                      color-theme-monokai
-                      color-theme-molokai)
+(defvar required-packages '(arduino-mode
+                            color-theme
+                            color-theme-molokai
+                            dockerfile-mode
+                            go-autocomplete
+                            go-mode
+                            haskell-mode
+                            magit
+                            markdown-mode
+                            molokai-theme
+                            nasm-mode
+                            powerline
+                            smex
+)
   "A list of packages to ensure are installed at launch.")
 
 (package-initialize)
 
-(dolist (p my-packages)
+(dolist (p required-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
@@ -18,9 +28,12 @@
 
 (load "~/.emacs.d/utility.el")
 
-(require 'color-theme)
-;(color-theme-molokai)
-(color-theme-monokai)
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+(setq inhibit-splash-screen t)
+
+(load-theme 'molokai t)
 
 (global-set-key [f2] 'visit-ansi-term)
 (global-set-key [f11] 'fullscreen)
@@ -32,18 +45,17 @@
 
 (setq-default show-trailing-whitespace t)
 
-(setq load-path (cons "~/.emacs.d/git/powerline" load-path))
 (require 'powerline)
 (powerline-default-theme)
 
-(add-to-list 'load-path "~/.emacs.d/git/dockerfile-mode")
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (setq initial-scratch-message nil)
 
 (global-linum-mode 1)
-;(ispell-change-dictionary "en_US")
+(ispell-change-dictionary "english")
+
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 (add-hook 'nxml-mode-hook
@@ -54,10 +66,6 @@
 
 (put 'upcase-region 'disabled nil)
 (global-set-key [f4] 'ff-find-other-file)
-
-;(add-to-list 'load-path (expand-file-name "~/.emacs.d/git/ethan-wspace/lisp"))
-;(require 'ethan-wspace)
-;(global-ethan-wspace-mode 1)
 
 (require 'whitespace)
 (setq whitespace-line-column 80) ;; limit line length
@@ -79,12 +87,10 @@
 
 (setq x-select-enable-clipboard t)
 
-(setq load-path (cons "~/.emacs.d/git/arduino-mode" load-path))
 (require 'arduino-mode)
 (setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
 (autoload 'arduino-mode "arduino-mode" "Arduino editing mode." t)
 
-(setq load-path (cons "~/.emacs.d/git/nasm-mode" load-path))
 (require 'nasm-mode)
 (add-to-list 'auto-mode-alist '("\\.asm$" . nasm-mode))
 
@@ -112,13 +118,17 @@
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
-(load "~/.emacs.d/go-autocomplete.el")
 (require 'go-autocomplete)
-(require 'auto-complete-config)
-(ac-config-default)
 
-(defun auto-complete-for-go ()
-  (auto-complete-mode 1))
-(add-hook 'go-mode-hook 'auto-complete-for-go)
-(with-eval-after-load 'go-mode
-  (require 'go-autocomplete))
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+(require 'ido)
+(ido-mode t)
+
+(require 'smex)
+(autoload 'smex "smex"
+  "Smex is a M-x enhancement for Emacs, it provides a convenient interface to
+your recently and most frequently used commands.")
+
+(global-set-key (kbd "M-x") 'smex)
+

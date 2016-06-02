@@ -1,18 +1,3 @@
 [submodule "oh-my-zsh"]
 	path = zsh/.oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "emacs/.emacs.d/git/powerline"]
-	path = emacs/.emacs.d/git/powerline
-	url = https://github.com/milkypostman/powerline.git
-[submodule "emacs/.emacs.d/git/dockerfile-mode"]
-	path = emacs/.emacs.d/git/dockerfile-mode
-	url = https://github.com/spotify/dockerfile-mode.git
-[submodule "emacs/.emacs.d/git/ethan-wspace"]
-	path = emacs/.emacs.d/git/ethan-wspace
-	url = https://github.com/glasserc/ethan-wspace.git
-[submodule "emacs/.emacs.d/git/nasm-mode"]
-	path = emacs/.emacs.d/git/nasm-mode
-	url = https://github.com/skeeto/nasm-mode.git
-[submodule "emacs/.emacs.d/git/arduino-mode"]
-	path = emacs/.emacs.d/git/arduino-mode
-	url = https://github.com/bookest/arduino-mode.git
