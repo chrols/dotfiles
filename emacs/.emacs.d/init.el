@@ -1,10 +1,16 @@
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+;; Workaround for bug, see:
+;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2014-10/msg01175.html
+
+(eval-when-compile
+  (if (and (= emacs-major-version 24) (= emacs-minor-version 4))
+      (require 'cl)))
 
 (defvar required-packages '(arduino-mode
                             color-theme
-                            color-theme-molokai
                             dockerfile-mode
                             go-autocomplete
                             go-mode
@@ -18,13 +24,16 @@
 )
   "A list of packages to ensure are installed at launch.")
 
-(package-initialize)
-
-(dolist (p required-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
-
-;;; My code below
+(let ((missing-packages nil))
+  (dolist (p required-packages)
+    (when (not (package-installed-p p))
+      (setq missing-packages t)))
+  (if missing-packages
+      (progn
+        (package-refresh-contents)
+        (dolist (p required-packages)
+          (when (not (package-installed-p p))
+            (package-install p))))))
 
 (load "~/.emacs.d/utility.el")
 
@@ -32,6 +41,7 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (setq inhibit-splash-screen t)
+(setq-default indent-tabs-mode nil)
 
 (load-theme 'molokai t)
 
