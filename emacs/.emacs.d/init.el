@@ -128,6 +128,10 @@
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
+
+
+(setq gofmt-command "goimports")
+(require 'go-mode-autoloads)
 (require 'go-autocomplete)
 
 (add-hook 'before-save-hook 'gofmt-before-save)
@@ -141,4 +145,3 @@
 your recently and most frequently used commands.")
 
 (global-set-key (kbd "M-x") 'smex)
-
