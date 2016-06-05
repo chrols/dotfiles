@@ -5,8 +5,12 @@
 ;; Workaround for bug, see:
 ;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2014-10/msg01175.html
 
+;; Not fixed in 24.5 it would appear
+
 (eval-when-compile
-  (if (and (= emacs-major-version 24) (= emacs-minor-version 4))
+  (if (and (= emacs-major-version 24)
+           (or (= emacs-minor-version 4)
+               (= emacs-minor-version 5)))
       (require 'cl)))
 
 (defvar required-packages '(arduino-mode
@@ -145,3 +149,5 @@
 your recently and most frequently used commands.")
 
 (global-set-key (kbd "M-x") 'smex)
+
+(setq vc-follow-symlinks t)
