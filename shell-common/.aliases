@@ -7,12 +7,10 @@ alias l='ls -l'
 alias c='cat'
 alias m='mplayer'
 alias o='kde-open'
-#alias n='emacsclient --tty'
 
 alias ls='ls --color=auto -F -h --group-directories-first'
 alias ll='ls -l '
 alias la='ls -A'
-
 
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
@@ -27,24 +25,10 @@ alias df='df -h'
 alias man='LC_ALL=C LANG=C man'
 alias grep='grep --color=auto --line-buffered'
 alias etags='ctags -e'
-#alias nano='emacsclient --tty'
 alias nano='vim'
-
-# SSH shorthands
 
 alias monster='ssh christian@monster'
 
-# Div games and programs
-
-alias lisp-play='mplayer -af equalizer=-12:-12:-12:0:0:0:12:12:-6:-12'
-alias pintos='pintos --qemu'
-alias dosbox='dosbox -conf ~/.dosbox.conf'
-alias duke3d='dosbox -conf ~/.dosbox.duke'
-alias jamestown="/usr/local/games/jamestown/Jamestown"
-alias strikecommand='dosbox -conf ~/.dosbox.sc'
-alias ra='dosbox -conf ~/.dosbox.ra'
-alias sw='dosbox -conf ~/.dosbox.sw'
-#alias emacs='emacsclient -c'
 alias open='kde-open'
 
 alias manw="man --html=$BROWSER" 
@@ -68,19 +52,10 @@ alias ff="firefox"
 
 alias reboot="systemctl reboot"
 alias halt="systemctl halt"
-alias android-connect="mtpfs -o allow_other /media/SamsungS3"
-alias android-disconnect="fusermount -u /media/SamsungS3"
 alias p="pacman"
 alias y="yaourt"
 
-alias tty0="screen /dev/ttyUSB0 115200"
-alias tty1="screen /dev/ttyUSB1 115200"
-
-
 alias python="python2"
-
-alias ibmon="xrandr --output DVI-1 --auto --rotate left --left-of DVI-0"
-alias ibmoff="xrandr --output DVI-1 --off"
 
 alias less="less -R"
 alias svndiff="svn diff --diff-cmd=colordiff|less"
@@ -104,4 +79,3 @@ alias mysql="mysql --safe-updates"
 alias portaldump="ssh root@demo.oamportal.com tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -"
 alias bfg="/bin/java -jar /home/chrols/bin/bfg-1.12.5.jar"
 alias vi="vim"
-alias gitk='echo Use tig instead'
