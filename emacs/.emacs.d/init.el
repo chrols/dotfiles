@@ -25,6 +25,7 @@
                             nasm-mode
                             powerline
                             smex
+                            yaml-mode
 )
   "A list of packages to ensure are installed at launch.")
 
@@ -108,7 +109,11 @@
 (require 'nasm-mode)
 (add-to-list 'auto-mode-alist '("\\.asm$" . nasm-mode))
 
+(require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
 (setq-default tab-width 4)
 
