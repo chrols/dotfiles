@@ -14,8 +14,10 @@
       (require 'cl)))
 
 (defvar required-packages '(arduino-mode
+                            auctex
                             color-theme
                             dockerfile-mode
+                            flycheck
                             go-autocomplete
                             go-mode
                             haskell-mode
@@ -156,3 +158,7 @@ your recently and most frequently used commands.")
 (global-set-key (kbd "M-x") 'smex)
 
 (setq vc-follow-symlinks t)
+
+(global-flycheck-mode)
+
+
