@@ -460,9 +460,9 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_F11), spawn "systemctl reboot")
         , ((mod4Mask .|. shiftMask, xK_F12), spawn "systemctl suspend")
 
-        , ((0 , 0x1008ff18), spawn "/usr/bin/firefox http://www.reddit.com") -- 0x1008ff18, XF86HomePage
-        , ((0 , 0x1008ff19), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff19, XF86Mail
-        , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff1b, XF86Search
+        , ((0 , 0x1008ff18), spawn "/usr/bin/firefox http://news.ycombinator.com") -- 0x1008ff18, XF86HomePage
+        , ((0 , 0x1008ff19), spawn "/usr/bin/firefox http://mail.chrols.se")  -- 0x1008ff19, XF86Mail
+        , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.google.com")  -- 0x1008ff1b, XF86Search
 
         , ((mod4Mask , xK_Up), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
         , ((mod4Mask , xK_Right), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
@@ -472,13 +472,12 @@ main = do
         , ((0 , 0x1008ff26), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") -- XF86AudioPrev
 
           -- 0x1008ff45, XF86Launch5
-        , ((0 , 0x1008ff45), spawn "/usr/local/eclipse/eclipse")
-        , ((0 , 0x1008ff46), spawn "VirtualBox")
-        , ((0 , 0x1008ff47), spawn "xfsettingsd --replace --sync")
-        , ((0 , 0x1008ff48), spawn "/usr/local/bin/fix_screen")
-        , ((0 , 0x1008ff49), spawn "/usr/bin/firefox http://www.gmail.com")
-
-        , ((0 , 0x1008ff30), spawn "/usr/bin/firefox http://www.gmail.com")     -- 0x1008ff30, XF86Favorites
+        , ((0 , 0x1008ff45), spawn "dolphin")
+        , ((0 , 0x1008ff46), spawn "deluge")
+        , ((0 , 0x1008ff47), spawn "steam")
+        , ((0 , 0x1008ff48), spawn "firefox")
+        , ((0 , 0x1008ff49), spawn "ynab")
+        , ((0 , 0x1008ff30), spawn "emacs")     -- 0x1008ff30, XF86Favorites
         , ((0 , 0x1008ff1d), spawn "exo-open --launch TerminalEmulator python") -- 0x1008ff1d, XF86Calculator
 
         , ((0 , 0x1008ff12), spawn "amixer -q set Master toggle")     -- XF86AudioMute
