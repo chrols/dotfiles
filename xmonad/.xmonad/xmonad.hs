@@ -464,19 +464,12 @@ main = do
         , ((0 , 0x1008ff19), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff19, XF86Mail
         , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.gmail.com")  -- 0x1008ff1b, XF86Search
 
-          -- For Spotify
-
-        , ((mod4Mask , xK_Up),    spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
-        , ((mod4Mask , xK_Right), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
-        , ((mod4Mask , xK_Left),  spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
-
--- Dest=org.mpris.MediaPlayer2.spotify for Spotify
--- Dest=com.spotify.qt for Spotify
--- Dest=org.mpris.MediaPlayer2.clementine for Clementine
-
-        , ((0 , 0x1008ff14), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") -- XF86AudioPlay
-        , ((0 , 0x1008ff27), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") -- XF86AudioNext
-        , ((0 , 0x1008ff26), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") -- XF86AudioPrev
+        , ((mod4Mask , xK_Up), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+        , ((mod4Mask , xK_Right), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+        , ((mod4Mask , xK_Left), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+        , ((0 , 0x1008ff14), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") -- XF86AudioPlay
+        , ((0 , 0x1008ff27), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") -- XF86AudioNext
+        , ((0 , 0x1008ff26), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") -- XF86AudioPrev
 
           -- 0x1008ff45, XF86Launch5
         , ((0 , 0x1008ff45), spawn "/usr/local/eclipse/eclipse")
