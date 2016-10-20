@@ -8,7 +8,7 @@ alias c='cat'
 alias m='mplayer'
 alias o='kde-open'
 
-alias ls='ls --color=auto -F -h --group-directories-first'
+alias ls='ls --color=auto -F -h --group-directories-first -tr'
 alias ll='ls -l '
 alias la='ls -A'
 
