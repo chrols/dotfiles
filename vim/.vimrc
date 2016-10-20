@@ -5,6 +5,7 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 colorscheme molokai
 let g:molokai_original = 1
 set nobackup
+set nowritebackup
 set noswapfile
 " Disable visual bell
 set visualbell t_vb=
