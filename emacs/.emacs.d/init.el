@@ -15,6 +15,7 @@
 
 (defvar required-packages '(arduino-mode
                             auctex
+                            cmake-mode
                             color-theme
                             dockerfile-mode
                             flycheck
