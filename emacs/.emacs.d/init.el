@@ -47,6 +47,7 @@
 
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
+(add-hook 'after-make-frame-functions 'never-scroll-bars)
 (tool-bar-mode -1)
 (setq inhibit-splash-screen t)
 (setq-default indent-tabs-mode nil)
