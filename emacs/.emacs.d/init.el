@@ -167,3 +167,5 @@ your recently and most frequently used commands.")
 (require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
+
+(setq c-basic-offset 4)
