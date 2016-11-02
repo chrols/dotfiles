@@ -84,8 +84,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
 source $HOME/.aliases
 source $HOME/.env
+
+# Read host-specific setup
+if [ -f .$(hostname)-setup ]; then
+    source $HOME/.$(hostname)-setup
+fi
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent identities id_rsa chargestorm-dsa christian_key.pem

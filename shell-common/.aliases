@@ -26,12 +26,8 @@ alias man='LC_ALL=C LANG=C man'
 alias grep='grep --color=auto --line-buffered'
 alias etags='ctags -e'
 alias nano='vim'
-
-alias monster='ssh christian@monster'
-
 alias open='kde-open'
-
-alias manw="man --html=$BROWSER" 
+alias manw="man --html=$BROWSER"
 
 alias passgen="< /dev/urandom tr -cd \[:graph:\] | fold -w 32 | head -n 1"
 
@@ -68,15 +64,12 @@ alias vpn-cs-connect="sudo vpnc /etc/vpnc/cs.conf"
 alias git-author-ranking="git ls-tree --name-only -z -r HEAD|egrep -z -Z -E '\.(cc|h|cpp|hpp|c|txt|java)$' |xargs -0 -n1 git blame --line-porcelain|grep \"^author \"|sort|uniq -c|sort -nr"
 alias t="todo.sh"
 alias w="sreport ^OMXS30% ^GSPC% ^N225%"
-alias ccu="ssh root@ccu"
-alias eclipse="/home/chrols/bin/liferay-ide/eclipse"
 alias todo="emacs -nw -Q ~/Dropbox/org/todo.org"
 alias plan="emacs -nw -Q ~/Dropbox/org/plan.org"
 alias idea="emacs -nw -Q ~/Dropbox/org/idea.org"
 alias jar="fastjar"
 alias paint="pinta"
 alias mysql="mysql --safe-updates"
-alias portaldump="ssh root@demo.oamportal.com tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -"
 alias bfg="/bin/java -jar /home/chrols/bin/bfg-1.12.5.jar"
 alias vi="vim"
 alias myip='wget http://ipinfo.io/ip -qO -'
