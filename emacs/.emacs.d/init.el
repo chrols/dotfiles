@@ -16,9 +16,12 @@
 (defvar required-packages '(arduino-mode
                             auctex
                             cmake-mode
+                            company
                             color-theme
+                            cpputils-cmake
                             dockerfile-mode
                             flycheck
+                            ggtags
                             go-autocomplete
                             go-mode
                             haskell-mode
@@ -162,6 +165,7 @@ your recently and most frequently used commands.")
 (setq vc-follow-symlinks t)
 
 (global-flycheck-mode)
+(setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
 (require 'auto-complete)
 (require 'auto-complete-config)
@@ -169,3 +173,21 @@ your recently and most frequently used commands.")
 (global-auto-complete-mode t)
 
 (setq c-basic-offset 4)
+(put 'downcase-region 'disabled nil)
+
+(require 'cpputils-cmake)
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (if (derived-mode-p 'c-mode 'c++-mode)
+                (cppcm-reload-all)
+              )))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+
