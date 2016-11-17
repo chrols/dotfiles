@@ -441,7 +441,7 @@ main = do
          , ((mod4Mask .|. shiftMask, xK_t), spawn "thunar")
          , ((mod4Mask .|. shiftMask, xK_d), spawn "deluge")
          , ((mod4Mask .|. shiftMask, xK_m), spawn "spotify")
-         , ((mod4Mask .|. shiftMask, xK_l), spawn "xlock -mode blank")
+         , ((mod4Mask .|. shiftMask, xK_l), spawn "i3lock -c 000000")
         -- , ((modMask .|. shiftMask, xK_h ), sendMessage MirrorShrink)
         -- , ((modMask .|. shiftMask, xK_l ), sendMessage MirrorExpand)
 
