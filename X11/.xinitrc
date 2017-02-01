@@ -11,16 +11,8 @@ export PATH=$PATH:$HOME/bin
 
 xrdb -merge $HOME/.Xresources&
 emacs --daemon&
-#xautolock -time 15 -locker "xlock -mode blank"&
 $HOME/.dropbox-dist/dropboxd&
-#xflux -l 58.28&
-# unclutter &
 redshift&
-# For laptop
-# gsynaptics-init&
-
-eval `ssh-agent -s`
-ssh-add ~/.ssh/chargestorm-dsa
 
 case $1 in
 	wmaker)
@@ -35,10 +27,7 @@ case $1 in
 		;;
 	xmonad|*)
 		$BIN/start_xfsettingsd.sh &
-#		#$BIN/fix_screen
-		#$BIN/tray &
 		xsetroot -solid black
-		#feh --bg-fill $HOME/.bg.jpg &
 		xsetroot -cursor_name left_ptr &
 		nm-applet&
 		exec xmonad
