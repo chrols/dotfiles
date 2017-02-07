@@ -51,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mosh colored-man-pages screen ssh-agent)
+plugins=(git colored-man-pages ssh-agent taskwarrior)
 
 # User configuration
 
