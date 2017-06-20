@@ -74,6 +74,7 @@ alias bfg="/bin/java -jar /home/chrols/bin/bfg-1.12.5.jar"
 alias vi="vim"
 alias myip='wget http://ipinfo.io/ip -qO -'
 alias cal='gcal -s1'
+alias telnet='rlwrap telnet'
 
 alias in='task add +in'
 alias rnd='task add +rnd'
@@ -101,3 +102,4 @@ read_and_review (){
 }
 
 alias rnr=read_and_review
+alias ack=ag
