@@ -1,57 +1,33 @@
 import XMonad
-import XMonad.Config.Xfce
-import XMonad.Layout.NoBorders
-import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Hooks.ManageHelpers
-import XMonad.Layout.Tabbed
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.SetWMName
 
--- Import stuff
-import XMonad
-import qualified XMonad.StackSet as W
-import qualified Data.Map as M
-import XMonad.Util.EZConfig(additionalKeys)
-import System.Exit
-import Graphics.X11.Xlib
-import System.IO
-
-import Data.Char (isSpace)
-import Text.Printf
-import qualified Data.List as List
-
--- actions
-import XMonad.Actions.CycleWS
-import XMonad.Actions.WindowGo
-import qualified XMonad.Actions.Search as S
-import XMonad.Actions.Search
-import qualified XMonad.Actions.Submap as SM
-import XMonad.Actions.GridSelect
-
--- utils
-import XMonad.Util.Scratchpad (scratchpadSpawnAction, scratchpadManageHook, scratchpadFilterOutWorkspace)
-import XMonad.Util.Run(spawnPipe)
-import qualified XMonad.Prompt 		as P
-import XMonad.Prompt.Shell
-import XMonad.Prompt
-
--- hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
 
--- layouts
-import XMonad.Layout.NoBorders
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.Reflect
-import XMonad.Layout.IM
-import XMonad.Layout.Tabbed
-import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Grid
+import XMonad.Layout.IM
+import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.Reflect
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.Tabbed
+
+import XMonad.Prompt
+
+import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Scratchpad (scratchpadManageHook)
+
+import Data.Char (isSpace)
+import System.IO
+import Text.Printf
+
+import qualified Data.List as List
+import qualified XMonad.StackSet as W
 
 -- Data.Ratio for IM layout
 import Data.Ratio ((%))
-
 
 -- import Utils
 -- import ScratchPadKeys             (scratchPadList, manageScratchPads, scratchPadKeys)
