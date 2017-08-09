@@ -1,193 +1,93 @@
+! Xft
+!Xft*dpi:       96
+Xft*dpi:       124
+Xft*antialias: true
+Xft*rgba:      rgb
+Xft*lcdfilter: lcddefault
+Xft*hinting:   true
+Xft*hintstyle: hintfull
 
-Eclipse*fontList:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
+URxvt.termName: rxvt-256color
 
-*inputMethod: kinput2
-emacs.FontBackend: xft
-!Emacs.font: Monospace-8
-!emacs*font:-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
-!emacs.font:consolas-10
-!emacs.font:dina-10
-!emacs.font:Terminal-10
-emacs.font:DejaVu Sans Mono-10
-!emacs.font: Inconsolata-12
-
-!xterm*faceName: DejaVu Sans Mono
-
-
-! Xft.dpi: 96
-! Xft.antialias: 1
-! Xft.hinting:    1
-! Xft.hintstyle:  hintfull
-! Xft.rgba:       rgb
-
-!{{{ URXVT
-!
-! General
-urxvt*termName:  rxvt-256color
-urxvt*loginShell:         true
-urxvt*scrollBar:         false
-urxvt*secondaryScroll:    true
-urxvt*saveLines:         65535
-urxvt*cursorBlink:       false
-urxvt*urgentOnBell:       true
-!urxvt*override-redirect:false
-!urxvt*borderLess:       false
-!urxvt*internalBorder:       0
-!urxvt*externalBorder:       0
-!
-! Extensions
-urxvt*perl-lib:        /usr/lib/urxvt/perl/
-urxvt*perl-ext-common: default,matcher,searchable-scrollback
-urxvt*urlLauncher:     /usr/local/bin/firefox
-urxvt*matcher.button:  1
-! Catch ugly URLs
-urxvt*cutchars:        '"'()*<>[]{|}
-!
-! Appearance
-
-urxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13
-
-!urxvt*font: 	  -bitstream-bitstream vera sans mono-medium-r-*--12-*-*-*-*-*-*-1
-!urxvt*boldFont:   -bitstream-bitstream vera sans mono-bold-r-*--10-*-*-*-*-*-*-1
-!urxvt*font:     -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!urxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2
-
-
-! Cursor
-!urxvt*cursorColor: #DCDCCC
-
-! Pseudo Transparency
-!urxvt*shading:    50
-!urxvt*transparent:true
-
-! ! Zenburn color-scheme
-! urxvt*background:  #3f3f3f
-! urxvt*foreground:  #dcdccc
-! ! black + red
-! !urxvt*color0:     #3f3f3f
-! urxvt*color0:      #1E2320
-! urxvt*color1:      #705050
-! ! green + yellow
-! urxvt*color2:      #60b48a
-! urxvt*color3:      #dfaf8f
-! ! blue + purple
-! urxvt*color4:      #506070
-! urxvt*color5:      #dc8cc3
-! ! cyan + white
-! urxvt*color6:      #8cd0d3
-! urxvt*color7:      #dcdccc
-! ! bright-black + bright-red
-! urxvt*color8:      #709080
-! urxvt*color9:      #dca3a3
-! ! bright-green + bright-yellow
-! urxvt*color10:     #c3bf9f
-! urxvt*color11:     #f0dfaf
-! ! bright-blue + bright-purple
-! urxvt*color12:     #94bff3
-! urxvt*color13:     #ec93d3
-! ! bright-cyan + bright-white
-! urxvt*color14:     #93e0e3
-! urxvt*color15:     #ffffff
-! !}}}
+URxvt*cursorBlink: true
+URxvt*scrollBar:   false
+URxvt*saveLines:   10000
 
 
 
-!! drop in Solarized colorscheme for Xresources/Xdefaults
+! Change font size. Useful for presentations.
+URxvt.perl-ext-common: font-size,clipboard
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
+URxvt.font-size.step:  4
 
-!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
-!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
-!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
-!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
-!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
-!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+! Copy/paste
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
-!! #define S_base03        #002b36
-!! #define S_base02        #073642
-!! #define S_base01        #586e75
-!! #define S_base00        #657b83
-!! #define S_base0         #839496
-!! #define S_base1         #93a1a1
-!! #define S_base2         #eee8d5
-!! #define S_base3         #fdf6e3
-!! #define S_yellow        #b58900
-!! #define S_orange        #cb4b16
-!! #define S_red           #dc322f
-!! #define S_magenta       #d33682
-!! #define S_violet        #6c71c4
-!! #define S_blue          #268bd2
-!! #define S_cyan          #2aa198
-!! #define S_green         #859900
+! Fonts
+URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=18
+!URxvt.letterSpace: -1
 
- urxvt*background:            #002b36
- urxvt*foreground:            #657b83
- urxvt*fading:                40
- urxvt*fadeColor:             #002b36
- urxvt*cursorColor:           #93a1a1
- urxvt*pointerColorBackground:#586e75
- urxvt*pointerColorForeground:#93a1a1
+! Do not scroll with output.
+URxvt*scrollTtyOutput:      false
 
+! Scroll in relation to buffer (with mouse scroll or Shift+Page Up).
+URxvt*scrollWithBuffer:     true
 
- urxvt*color0:                #073642
- urxvt*color1:                #dc322f
- urxvt*color2:                #859900
- urxvt*color3:                #b58900
- urxvt*color4:                #268bd2
- urxvt*color5:                #d33682
- urxvt*color6:                #2aa198
- urxvt*color7:                #eee8d5
- urxvt*color8:                #002b36
- urxvt*color9:                #cb4b16
- urxvt*color10:               #586e75
- urxvt*color11:               #657b83
- urxvt*color12:               #839496
- urxvt*color13:               #6c71c4
- urxvt*color14:               #93a1a1
- urxvt*color15:               #fdf6e3
+! Scroll back to the bottom on keypress.
+URxvt*scrollTtyKeypress:    true
 
-! -> To enable extensions place the following in ~/.Xresources
-!    (change to whatever suits your needs)
-!  URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
-!  URxvt.url-select.launcher:  chromium
-!  URxvt.url-select.underline: true
-!  URxvt.keysym.M-u:           perl:url-select:select_next
-!  URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-!  URxvt.keysym.M-s:           perl:keyboard-select:search
+! Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode.
+URxvt.iso14755:         False
 
-xterm*faceName: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13
-xterm*faceSize: 10
+!#define Ansi_0_Color #000000
+#define Ansi_0_Color #262626
+#define Ansi_1_Color #cc6666
+#define Ansi_10_Color #b5bd68
+#define Ansi_11_Color #f0c674
+#define Ansi_12_Color #81a2be
+#define Ansi_13_Color #b294bb
+#define Ansi_14_Color #8abeb7
+#define Ansi_15_Color #ffffff
+#define Ansi_2_Color #b5bd68
+#define Ansi_3_Color #f0c674
+#define Ansi_4_Color #81a2be
+#define Ansi_5_Color #b294bb
+#define Ansi_6_Color #8abeb7
+#define Ansi_7_Color #ffffff
+!#define Ansi_8_Color #000000
+#define Ansi_8_Color #565656
+#define Ansi_9_Color #cc6666
+!#define Background_Color #1d1f21
+#define Background_Color #262626
+#define Bold_Color #c5c8c6
+#define Cursor_Color #c5c8c6
+#define Cursor_Text_Color #1d1f21
+#define Foreground_Color #c5c8c6
+#define Selected_Text_Color #c5c8c6
+#define Selection_Color #373b41
 
-! Molokai theme
-*xterm*background: #101010
-*xterm*foreground: #d0d0d0
-*xterm*cursorColor: #d0d0d0
-*xterm*color0: #101010
-*xterm*color1: #960050
-*xterm*color2: #66aa11
-*xterm*color3: #c47f2c
-*xterm*color4: #30309b
-*xterm*color5: #7e40a5
-*xterm*color6: #3579a8
-*xterm*color7: #9999aa
-*xterm*color8: #303030
-*xterm*color9: #ff0090
-*xterm*color10: #80ff00
-*xterm*color11: #ffba68
-*xterm*color12: #5f5fee
-*xterm*color13: #bb88dd
-*xterm*color14: #4eb4fa
-*xterm*color15: #d0d0d0
-
-*xterm*eightBitInput:   false
-*xterm*eightBitOutput:  true
+URxvt*color0:       Ansi_0_Color
+URxvt*color1:       Ansi_1_Color
+URxvt*color2:       Ansi_2_Color
+URxvt*color3:       Ansi_3_Color
+URxvt*color4:       Ansi_4_Color
+URxvt*color5:       Ansi_5_Color
+URxvt*color6:       Ansi_6_Color
+URxvt*color7:       Ansi_7_Color
+URxvt*color8:       Ansi_8_Color
+URxvt*color9:       Ansi_9_Color
+URxvt*color10:      Ansi_10_Color
+URxvt*color11:      Ansi_11_Color
+URxvt*color12:      Ansi_12_Color
+URxvt*color13:      Ansi_13_Color
+URxvt*color14:      Ansi_14_Color
+URxvt*color15:      Ansi_15_Color
+URxvt*foreground:   Foreground_Color
+URxvt*background:   Background_Color
+URxvt*cursorColor:  Cursor_Color
