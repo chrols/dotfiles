@@ -90,7 +90,7 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6" ,"7", "8", "9","A","B"]
 myManageHook :: ManageHook
 myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( composeAll . concat $
                 [[isFullscreen                  --> doFullFloat
-                 , isDialog --> doFullFloat
+                 , isDialog --> doCenterFloat
                  , className =? "Xmessage" 	    --> doCenterFloat
                  , className =? "Zenity" 	    --> doCenterFloat
                  , className =? "feh" 	            --> doCenterFloat
@@ -98,27 +98,18 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( c
                  , className =? "Chromium"          --> doShift "1"
                  , className =? "Emacs"             --> doShift "2"
                  , className =? "QtCreator"         --> doShift "3"
-                 , className =? "URxvt"             --> doShift "4"
-                 , className =? "urxvt"             --> doShift "4"
                  , className =? "MPlayer"	--> doCenterFloat
                  , className =? "mplayer2"	--> doCenterFloat
                  , className =? "Clementine"	--> doShift "5"
                  , className =? "Spotify"	--> doShift "5"
                  , className =? "Deluge"	--> doShift "5"
-                 , className =? "games-strategy-engine-framework-GameRunner" --> doShift "7"
-                 , className =? "bsnes"	--> doShift "7"
-                 , className =? "OpenOffice.org 3.1" --> doShift "6"
-                 , className =? "Pidgin"           --> doShift "9"
                  , className =? "Skype"           --> doShift "9"
                  , className =? "VirtualBox"	--> doShift "8"
                  , className =? "avidemux2_gtk" --> doShift "6"
                  , className =? "Avidemux2_gtk" --> doShift "6"
                  , className =? "Steam" --> doFloat
                  , className =? "steam" --> doFullFloat
---                 , className =? "Steam" --> doIgnore
-                  --                 , className =? "stalonetray"    --> doIgnore
                  , className =? "zsnes"        --> doCenterFloat
-
                  ]
 
 		]
