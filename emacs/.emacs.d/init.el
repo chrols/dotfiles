@@ -70,9 +70,6 @@
 (require 'powerline)
 (powerline-default-theme)
 
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-
 (setq initial-scratch-message nil)
 
 (global-linum-mode 1)
