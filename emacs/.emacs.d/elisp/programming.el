@@ -13,3 +13,6 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
+
+;; The default lisp-indent-function does not look good to mee
+(setq lisp-indent-function 'common-lisp-indent-function)
