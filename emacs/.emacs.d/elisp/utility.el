@@ -1,8 +1,3 @@
-(defun fullscreen ()
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-
 (defun visit-ansi-term ()
   "If we are in an *ansi-term*, rename it.
 If there is no *ansi-term*, run it.

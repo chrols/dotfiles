@@ -10,7 +10,7 @@
 (load-theme 'molokai t)
 
 (global-set-key [f2] 'visit-ansi-term)
-(global-set-key [f11] 'fullscreen)
+(global-set-key [f11] 'toggle-frame-fullscreen)
 
 (display-time)
 
