@@ -53,6 +53,10 @@ alias git-author-ranking="git ls-tree --name-only -z -r HEAD|egrep -z -Z -E '\.(
 alias vecka="python -c 'import datetime; print(datetime.date.today().isocalendar()[1])'"
 alias week="python -c 'import datetime; print(datetime.date.today().isocalendar()[1])'"
 
+buy() {
+    echo $@ >> $HOME/org/tobuy.org
+}
+
 # Taskwarrior related aliases
 
 alias t='task'
