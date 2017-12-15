@@ -16,3 +16,9 @@
 
 ;; The default lisp-indent-function does not look good to mee
 (setq lisp-indent-function 'common-lisp-indent-function)
+
+(setq prettify-symbols-alist
+      '(("lambda" . 955) ; λ
+        ))
+
+(global-prettify-symbols-mode 1)
