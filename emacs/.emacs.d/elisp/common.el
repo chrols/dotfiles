@@ -7,6 +7,9 @@
 (setq inhibit-splash-screen t)
 (setq-default indent-tabs-mode nil)
 
+;; Perform GC less often
+(setq gc-cons-threshold 100000000)
+
 (load-theme 'molokai t)
 
 (global-set-key [f2] 'visit-ansi-term)
