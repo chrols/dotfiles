@@ -8,10 +8,12 @@
               )))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'after-init-hook 'global-company-mode)
 
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
               (ggtags-mode 1))))
 
+
+(add-hook 'c-mode-common-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
