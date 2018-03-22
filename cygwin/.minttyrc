@@ -1,0 +1,7 @@
+BoldAsFont=-1
+Font=Inconsolata
+FontHeight=14
+Transparency=off
+OpaqueWhenFocused=no
+Scrollbar=none
+ThemeFile=nord
