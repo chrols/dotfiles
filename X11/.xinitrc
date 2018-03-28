@@ -36,6 +36,7 @@ case $1 in
 		xsetroot -solid black
 		xsetroot -cursor_name left_ptr &
 		nm-applet&
+		random-bg.py
 		exec xmonad
 		;;
 esac
