@@ -237,9 +237,6 @@ xmobarCpuTemp = xmobarCommand "xmobar-cputemp" ["red", "lightblue", "green"]
 xmobarGpuTemp :: String -> Integer -> String
 xmobarGpuTemp = xmobarCommand "xmobar-gputemp" ["red", "lightblue", "green"]
 
-xmobarStocks :: String -> Integer -> String
-xmobarStocks = xmobarCommand "xmobar-stocks" ["^OMXS30%", "^GSPC%", "^N225%"]
-
 xmobarVolume :: String -> Integer -> String
 xmobarVolume = xmobarCommand "xmobar-volume" []
 
@@ -343,14 +340,13 @@ xmobarTemplate "athena" =
                  , xmobarMultiCpu 20
                  , xmobarMemory 100
                  , xmobarDynNetwork 100
-                 , xmobarStocks "stocks" 600
                  , xmobarCpuTemp "cputemp" 60
                  , xmobarGpuTemp "gputemp" 60
                  , xmobarVolume "volume" 10
                  , xmobarWeather "ESSP" 36000
                  , xmobarDate 10
                  ]
-  ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% CPU: %cputemp% GPU: %gputemp% Ute: %ESSP% | %stocks% %volume% <fc=#ee9a00>%date%</fc> \'"
+  ++ " -t \'%StdinReader%}{ %top% %multicpu% %memory%  %dynnetwork% CPU: %cputemp% GPU: %gputemp% Ute: %ESSP% | %volume% <fc=#ee9a00>%date%</fc> \'"
 
 xmobarTemplate "hecate" =
   xmobarCommands [ xmobarStdin
