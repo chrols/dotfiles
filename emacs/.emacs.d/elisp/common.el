@@ -10,7 +10,7 @@
 ;; Perform GC less often
 (setq gc-cons-threshold 100000000)
 
-(load-theme 'molokai t)
+(load-theme 'material t)
 
 (global-set-key [f2] 'visit-ansi-term)
 (global-set-key [f11] 'toggle-frame-fullscreen)
