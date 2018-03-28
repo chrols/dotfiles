@@ -53,3 +53,6 @@ your recently and most frequently used commands.")
 
 (setq vc-follow-symlinks t)
 (put 'downcase-region 'disabled nil)
+
+;; Improve scroll speed: https://emacs.stackexchange.com/questions/28736/emacs-pointcursor-movement-lag/28746
+(setq auto-window-vscroll nil)
