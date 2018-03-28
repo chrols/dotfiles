@@ -76,6 +76,7 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( c
                  , className =? "QtCreator"         --> doShift "3"
                  , className =? "MPlayer"	--> doCenterFloat
                  , className =? "mplayer2"	--> doCenterFloat
+                 , className =? "mpv"	        --> doCenterFloat
                  , className =? "Clementine"	--> doShift "5"
                  , className =? "Spotify"	--> doShift "5"
                  , className =? "Deluge"	--> doShift "5"
@@ -427,12 +428,12 @@ main = do
         , ((0 , 0x1008ff19), spawn "/usr/bin/firefox http://mail.chrols.se")  -- 0x1008ff19, XF86Mail
         , ((0 , 0x1008ff1b), spawn "/usr/bin/firefox http://www.google.com")  -- 0x1008ff1b, XF86Search
 
-        , ((mod4Mask , xK_Up), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
-        , ((mod4Mask , xK_Right), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
-        , ((mod4Mask , xK_Left), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
-        , ((0 , 0x1008ff14), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") -- XF86AudioPlay
-        , ((0 , 0x1008ff27), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") -- XF86AudioNext
-        , ((0 , 0x1008ff26), spawn "/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous; /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") -- XF86AudioPrev
+        , ((mod4Mask , xK_Up), spawn "media-ctrl play")
+        , ((mod4Mask , xK_Right), spawn "media-ctrl next")
+        , ((mod4Mask , xK_Left), spawn "media-ctrl previous")
+        , ((0 , 0x1008ff14), spawn "media-ctrl play") -- XF86AudioPlay
+        , ((0 , 0x1008ff27), spawn "media-ctrl next") -- XF86AudioNext
+        , ((0 , 0x1008ff26), spawn "media-ctrl prev") -- XF86AudioPrev
 
           -- 0x1008ff45, XF86Launch5
         , ((0 , 0x1008ff45), spawn "dolphin")
@@ -444,10 +445,10 @@ main = do
         , ((0 , 0x1008ff1d), spawn "exo-open --launch TerminalEmulator python") -- 0x1008ff1d, XF86Calculator
 
         , ((0 , 0x1008ff12), spawn "amixer -q set Master toggle")     -- XF86AudioMute
-         , ((mod4Mask , xK_Page_Down), spawn "amixer -q set Master  1%- unmute")
-         , ((mod4Mask , xK_Page_Up), spawn "amixer -q set Master 1%+ unmute")
-         , ((0 , 0x1008ff11), spawn "amixer -q set Master  1%- unmute") -- XF86AudioLowerVolume
-         , ((0 , 0x1008ff13), spawn "amixer -q set Master 1%+ unmute")  -- XF86AudioRaiseVolume
+        , ((mod4Mask , xK_Page_Down), spawn "xmobar-volume down")
+        , ((mod4Mask , xK_Page_Up), spawn "xmobar-volume up")
+        , ((0 , 0x1008ff11), spawn "xmobar-volume down") -- XF86AudioLowerVolume
+        , ((0 , 0x1008ff13), spawn "xmobar-volume up") -- XF86AudioRaiseVolume
 
         , ((mod4Mask, xK_Print), spawn "sleep 2; export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
         , ((0, xK_Print), spawn "export DISPLAY=:0.0 ; /home/chrols/src/scripts/scrot_now")
