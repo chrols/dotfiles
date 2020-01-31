@@ -9,12 +9,6 @@ setxkbmap -option terminate:ctrl_alt_bksp
 # Use my custom Dvorak layout
 setxkbmap se -variant dvorak_a5
 
-# Change the caps-lock key into a Hyper key
-xmodmap -e "keysym Caps_Lock = Hyper_L"
-xmodmap -e "remove Mod4 = Hyper_L"
-xmodmap -e "remove lock = Hyper_L"
-xmodmap -e "add Mod3 = Hyper_L"
-
 # Disable bell
 xset -b
 
