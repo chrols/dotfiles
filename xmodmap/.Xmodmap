@@ -5,6 +5,9 @@ keycode 166 = XF86AudioPrev
 keycode 166 = XF86AudioNext
 keycode 172 = XF86AudioPlay
 
+! Remap the menu key as Compose
+keysym Menu = Multi_key
+
 ! Clear modifiers
 clear      lock
 clear   control
