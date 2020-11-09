@@ -1,11 +1,13 @@
 ! Xft
-!Xft*dpi:       96
-Xft*dpi:       124
-Xft*antialias: true
-Xft*rgba:      rgb
-Xft*lcdfilter: lcddefault
-Xft*hinting:   true
-Xft*hintstyle: hintfull
+
+Xft.dpi: 168
+
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
 URxvt.termName: rxvt-256color
 
@@ -13,6 +15,8 @@ URxvt*cursorBlink: true
 URxvt*scrollBar:   false
 URxvt*saveLines:   10000
 
+URxvt.transparent: true
+URxvt.shading:20
 
 
 ! Change font size. Useful for presentations.
@@ -30,7 +34,7 @@ URxvt.clipboard.copycmd:  xclip -i -selection clipboard
 URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 ! Fonts
-URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=18
+URxvt.font: xft:Droid Sans Mono for Powerline:faceSize=18
 !URxvt.letterSpace: -1
 
 ! Do not scroll with output.
