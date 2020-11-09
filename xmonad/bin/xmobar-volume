@@ -1,11 +1,17 @@
 #!/bin/bash
 
+
+change-all-sinks() {
+    for SINK in `pacmd list-sinks | grep 'index:' | cut -b12-`
+    do
+        pactl set-sink-volume $SINK $1
+    done
+}
+
 if [[ $1 == "up" ]]; then
-    pactl set-sink-volume 0 +1%
-    pactl set-sink-volume 1 +1%
+    change-all-sinks +1%
 elif [[ $1 == "down" ]]; then
-    pactl set-sink-volume 0 -1%
-    pactl set-sink-volume 1 -1%
+    change-all-sinks -1%
 else
     amixer get Master|grep %|cut -d \[ -f 2|cut -f 1 -d \]
 fi
