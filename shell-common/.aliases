@@ -45,6 +45,7 @@ alias ack=ag
 alias reboot="systemctl reboot"
 alias halt="systemctl halt"
 alias vpn-cs-connect="sudo vpnc /etc/vpnc/cs.conf"
+alias emacs="emacsclient -c"
 
 # Functions
 

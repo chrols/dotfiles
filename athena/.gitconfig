@@ -27,3 +27,5 @@
            trustExitCode = true
 [core]
 	autocrlf = false
+[credential]
+	helper = store

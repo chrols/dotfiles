@@ -402,6 +402,7 @@ main = do
         , ((mod4Mask , xK_F5), spawn "deluge")
          , ((mod4Mask .|. shiftMask, xK_f), spawn "firefox")
          , ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c")
+         , ((mod4Mask .|. shiftMask, xK_r), spawn "random-bg.py")
          , ((mod4Mask .|. shiftMask, xK_t), spawn "~/bin/dolphin")
          , ((mod4Mask .|. shiftMask, xK_d), spawn "deluge")
          , ((mod4Mask .|. shiftMask, xK_m), spawn "spotify")
