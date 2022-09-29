@@ -34,17 +34,8 @@ case "$1" in
 	xfce)
 		exec startxfce4
 		;;
-	kde)
-		exec startkde
-		;;
-	xmonad)
-		xsetroot -solid black
-		xsetroot -cursor_name left_ptr &
-		nm-applet&
-                nextcloud&
-                redshift&
-		random-bg.py
-		exec xmonad
+	kde|*)
+		exec startplasma-x11
 		;;
 	i3|*)
             xrandr --output DP-2 --mode 3840x2160 --rate 119.91
