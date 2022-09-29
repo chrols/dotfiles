@@ -6,9 +6,9 @@
 alias l='ls -l'
 alias c='cat'
 alias m='mplayer'
-alias o='kde-open'
+alias o='xdg-open'
 
-alias ls='ls --color=auto -F -h --group-directories-first -tr'
+alias ls='ls --color=auto -F -h --group-directories-first'
 alias ll='ls -l '
 alias la='ls -A'
 
