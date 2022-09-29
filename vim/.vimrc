@@ -1,9 +1,8 @@
 syntax enable
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-:set tags+=tags 
-" colorscheme monokai
-colorscheme molokai
-let g:molokai_original = 1
+:set tags+=tags
+colorscheme gruvbox
+:set bg=dark
 set nobackup
 set nowritebackup
 set noswapfile
@@ -31,3 +30,4 @@ set t_Co=256
 :set listchars=tab:>·,trail:~,extends:>,precedes:<
 :set list
 let g:powerline_pycmd = "py3"
+
