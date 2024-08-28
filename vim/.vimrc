@@ -1,5 +1,9 @@
 syntax enable
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4
+set softtabstop=0
+set expandtab
+set shiftwidth=4
+set smarttab
 :set tags+=tags
 colorscheme gruvbox
 :set bg=dark
