@@ -1,11 +1,25 @@
 #!/bin/bash
-# -*- mode: sh -*-
+# -*- mode: sh; coding: utf-8-unix -*-
 # --------------------------------------------------------------------
 # aliases
 # --------------------------------------------------------------------
 
+# Alternative programs
 if command -v eza > /dev/null; then
     alias ls="eza --group-directories-first"
+fi
+
+if command -v z > /dev/null; then
+    alias cd="z"
+fi
+
+if command -v nvim > /dev/null; then
+    alias vi="nvim"
+    alias vim="nvim"
+fi
+
+if command -v btop > /dev/null; then
+    alias top='btop'
 fi
 
 alias l='ls -l'
@@ -13,56 +27,28 @@ alias c='cat'
 alias m='mplayer'
 alias o='xdg-open'
 
-alias ls='ls --color=auto -F -h --group-directories-first'
-alias ll='ls -l '
-alias la='ls -A'
-
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-
 alias cp='ionice -c 3 cp -pi'
 alias mv='ionice -c 3 mv -i'
 alias rsync='ionice -c 3 rsync'
 
-alias ff="firefox"
-alias diff='colordiff'
-alias top='htop'
-alias df='df -h'
-alias man='LC_ALL=C LANG=C man'
-alias grep='grep --color=auto --line-buffered'
-alias etags='ctags -e'
-alias nano='vim'
-alias open='kde-open'
-alias manw="man --html=$BROWSER"
-alias pgrep="pgrep -l"
-alias less="less -R"
-alias svndiff="svn diff --diff-cmd=colordiff|less"
-alias diff="colordiff -u"
-alias jar="fastjar"
-alias paint="pinta"
-alias mysql="mysql --safe-updates"
-alias bfg="/bin/java -jar /home/chrols/bin/bfg-1.12.5.jar"
-alias vi="vim"
-alias myip='wget http://ipinfo.io/ip -qO -'
 alias cal='gcal -s1'
-alias telnet='rlwrap telnet'
-alias ack=ag
-alias reboot="systemctl reboot"
-alias halt="systemctl halt"
+alias crt="cool-retro-term"
+alias df='df -h'
 alias emacs="emacsclient -c"
+alias grep='grep --color=auto --line-buffered'
+alias less="less -R"
+alias man='LC_ALL=C LANG=C man'
+alias myip='wget http://ipinfo.io/ip -qO -'
+alias open='kde-open'
+alias pgrep="pgrep -l"
+alias ynab="run_scaled --scale=2 wine ~/.wine/drive_c/Program\ Files/YNAB\ 4/YNAB\ 4.exe"
+
+# Flatpaks
+alias brave="flatpak run com.brave.Brave"
+alias spotify="flatpak run com.spotify.Client"
 
 # Functions
-
 alias passgen="< /dev/urandom tr -cd \[:graph:\] | fold -w 32 | head -n 1"
 alias git-author-ranking="git ls-tree --name-only -z -r HEAD|egrep -z -Z -E '\.(cc|h|cpp|hpp|c|txt|java)$' |xargs -0 -n1 git blame --line-porcelain|grep \"^author \"|sort|uniq -c|sort -nr"
 alias vecka="python -c 'import datetime; print(datetime.date.today().isocalendar()[1])'"
-alias week="python -c 'import datetime; print(datetime.date.today().isocalendar()[1])'"
-alias crt="cool-retro-term"
-alias k4dirstat="qdirstat"
-alias ynab="run_scaled --scale=2 wine /home/chrols/.wine/drive_c/Program\ Files/YNAB\ 4/YNAB\ 4.exe"
-alias vim="nvim"
-alias vi="nvim"
-alias cd="z"
-alias t="task"
-alias spotify="flatpak run com.spotify.Client"
-alias brave="flatpak run com.brave.Brave"
+alias week="vecka"
